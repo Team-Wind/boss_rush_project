@@ -5,7 +5,7 @@ using System;
 
 public abstract partial class State : Node
 {
-	public StateMachine stateMachine;
+	public StateMachine StateMachine;
 	public virtual void Enter()
 	{
 	}

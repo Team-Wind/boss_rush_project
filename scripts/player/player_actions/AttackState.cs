@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class IdleState : Node
+public partial class AttackState : State
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	[Export] public CharacterBody2D Character;
+	public override void Enter()
 	{
 	}
 
