@@ -17,16 +17,48 @@ public partial class FallState : State
 	{
 		//Player.AnimationPlayer("aindasoipdna");
 
-		var vel = Character.Velocity;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void PhysicsUpdate(double delta)
 	{
+		var vel = Character.Velocity;
+		vel.Y += Gravity * (float)delta;
+
+		var direction = Input.GetAxis("MoveLeft","MoveRight");
+		vel.X = direction * WalkSpeed;
+
+		Character.Velocity = vel;
+		Character.MoveAndSlide();
+
+		if (Character.IsOnFloor())
+		{
+			if (direction == 0)
+			{
+				StateMachine.ChangeState("IdleState");
+			}
+			else
+			{
+				StateMachine.ChangeState("WalkState");
+			}
+		}
+
 	}
 
     public override void HandleInput(InputEvent @event)
     {
+
+		if (Input.IsActionJustPressed("Jump") && Player.CanDoubleJump)
+		{
+			Player.CanDoubleJump = false;
+			StateMachine.ChangeState("JumpState");
+		}
+
+		var dir_dash = Input.GetAxis("MoveLeft","MoveRight");
+		if (Input.IsActionJustPressed("Dash") && !Player.Dashing && Player.DashTimer <= 0.0f)
+		{
+			StateMachine.ChangeState("DashState");			
+		}
       
     }
 
