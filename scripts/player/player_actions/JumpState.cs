@@ -52,15 +52,15 @@ public partial class JumpState : State
 	public override void HandleInput(InputEvent @event)
 	{	
 		//verificação de double jump 
-		//if (Input.IsActionJustPressed("Jump") && (Player.CanDoubleJump))
-		//{
-		//	Player.CanDoubleJump = false;
-		//  StateMachine.ChangeState("JumpState");
-		//}
+		if (Input.IsActionJustPressed("Jump") && (Player.CanDoubleJump))
+		{
+			Player.CanDoubleJump = false;
+		  StateMachine.ChangeState("JumpState");
+		}
 
 		//verificação de dash
 		var dir_dash = Input.GetAxis("MoveLeft","MoveRight");
-		if (Input.IsActionPressed("Dash") && dir_dash != 0)
+		if (Input.IsActionPressed("Dash") && dir_dash != 0 && !Player.Dashing && Player.DashTimer <= 0.0f)
 		{
 			StateMachine.ChangeState("DashState");
 		}

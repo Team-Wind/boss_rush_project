@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://c72jvxinlcxtf"]
+
+[ext_resource type="Script" uid="uid://xwcjf0mlfe4x" path="res://scripts/player/Player.cs" id="1_h8cp6"]
+[ext_resource type="Texture2D" uid="uid://rmq1cc0ygp5i" path="res://assets/player_test/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png" id="2_fp4r3"]
+[ext_resource type="Script" uid="uid://dns15axn0vi8i" path="res://scripts/player/player_actions/DashState.cs" id="2_mb4fa"]
+[ext_resource type="Script" uid="uid://e77hudvoo7cc" path="res://scripts/player/player_actions/FallState.cs" id="3_fp4r3"]
+[ext_resource type="Script" uid="uid://k34bhspxt130" path="res://scripts/player/player_state_machine/StateMachine.cs" id="3_teb4e"]
+[ext_resource type="Script" uid="uid://bbg0gh2x2dmnc" path="res://scripts/player/player_actions/IdleState.cs" id="4_teb4e"]
+[ext_resource type="Script" uid="uid://cs1p6nf08bget" path="res://scripts/player/player_actions/JumpState.cs" id="5_la7tc"]
+[ext_resource type="Script" uid="uid://bev51rs8nebef" path="res://scripts/player/player_actions/WalkState.cs" id="6_otd1v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8cp6"]
+size = Vector2(21, 63)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_h8cp6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_h8cp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.1777778)
+texture = ExtResource("2_fp4r3")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+script = ExtResource("3_teb4e")
+InitialState = NodePath("IdleState")
+
+[node name="DashState" type="Node" parent="StateMachine"]
+script = ExtResource("2_mb4fa")
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character", "Player")]
+script = ExtResource("3_fp4r3")
+Character = NodePath("../..")
+Player = NodePath("../..")
+
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character")]
+script = ExtResource("4_teb4e")
+Character = NodePath("../..")
+
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character", "Player")]
+script = ExtResource("5_la7tc")
+Character = NodePath("../..")
+Player = NodePath("../..")
+
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character", "Player")]
+script = ExtResource("6_otd1v")
+Character = NodePath("../..")
+Player = NodePath("../..")

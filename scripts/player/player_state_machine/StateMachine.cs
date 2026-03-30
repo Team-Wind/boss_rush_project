@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-
 //classe que vai controlar os estados do player, ela tem um estado atual e métodos para mudar de estado, atualizar o estado atual e lidar com input
 
 public partial class StateMachine : Node
@@ -21,6 +20,11 @@ public partial class StateMachine : Node
 			{
 				States[st.Name.ToString().ToLower()] = st;
 				st.StateMachine = this;
+				GD.Print($"Estado armazenado: {child.Name}, com sucesso!");
+			}
+			else
+			{
+				GD.Print($"Nó ignorado: {child.Name} (Não herdou de State ou não buildou)");
 			}
 		}
 	

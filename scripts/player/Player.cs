@@ -4,17 +4,14 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-
-
 public partial class Player : CharacterBody2D
 {
-
 	[Export] private AnimatedSprite2D Animation;
 
 	//assets que podemos colocar==============
-	[Export] public AudioStreamPlayer SfxWalk; 
-	[Export] public AudioStreamPlayer SfxDash;
-	[Export] public AudioStreamPlayer SfxJump;
+	//[Export] public AudioStreamPlayer SfxWalk; 
+	//[Export] public AudioStreamPlayer SfxDash;
+	//[Export] public AudioStreamPlayer SfxJump;
 	//========================================
 
 	//variaveis do jogador
@@ -28,7 +25,6 @@ public partial class Player : CharacterBody2D
 	public float DashTimer = 0.0f;
     public float DashCooldown = 0.5f;
 
-	
 	public override void _PhysicsProcess(double delta)
 	{
 		if (WasOnFloor && !IsOnFloor())
@@ -38,7 +34,7 @@ public partial class Player : CharacterBody2D
 
 		WasOnFloor = IsOnFloor();
 
-		FlipPlayer();
+		//FlipPlayer();
 
 		if (Velocity.X != 0) { FacingDirection = Math.Sign(Velocity.X); }
 			
@@ -53,8 +49,8 @@ public partial class Player : CharacterBody2D
 		Animation.Play(name);
 	}
 
-	private void FlipPlayer()
-	{
-		if (Velocity.X !=0){ Animation.FlipH = Velocity.X < 0; }
-	}
+	//private void FlipPlayer()
+	//{
+	//	if (Velocity.X !=0){ Animation.FlipH = Velocity.X < 0; }
+	//}
 }
