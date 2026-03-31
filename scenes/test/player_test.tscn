@@ -23,9 +23,10 @@ shape = SubResource("RectangleShape2D_h8cp6")
 scale = Vector2(0.2, 0.1777778)
 texture = ExtResource("2_fp4r3")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState", "StateLabel")]
 script = ExtResource("3_teb4e")
 InitialState = NodePath("IdleState")
+StateLabel = NodePath("../Label")
 
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character", "Player")]
 script = ExtResource("2_mb4fa")
@@ -51,3 +52,9 @@ Player = NodePath("../..")
 script = ExtResource("6_otd1v")
 Character = NodePath("../..")
 Player = NodePath("../..")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -31.0
+offset_top = -56.0
+offset_right = 20.0
+offset_bottom = -33.0

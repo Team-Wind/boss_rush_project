@@ -43,6 +43,9 @@ public partial class DashState : State
             Player.Dashing = false;
             StateMachine.ChangeState("FallState");
         }
+
+        
+
     }
 
 	public override void Exit()
