@@ -54,7 +54,7 @@ public partial class JumpState : State
 		//verificação de double jump 
 		if (Input.IsActionJustPressed("Jump") && (Player.CanDoubleJump))
 		{
-			Player.CanDoubleJump = false;
+		  Player.CanDoubleJump = false;
 		  StateMachine.ChangeState("JumpState");
 		}
 

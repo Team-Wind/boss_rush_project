@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c72jvxinlcxtf"]
+[gd_scene load_steps=11 format=3 uid="uid://c72jvxinlcxtf"]
 
 [ext_resource type="Script" uid="uid://xwcjf0mlfe4x" path="res://scripts/player/Player.cs" id="1_h8cp6"]
 [ext_resource type="Texture2D" uid="uid://rmq1cc0ygp5i" path="res://assets/player_test/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png" id="2_fp4r3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bbg0gh2x2dmnc" path="res://scripts/player/player_actions/IdleState.cs" id="4_teb4e"]
 [ext_resource type="Script" uid="uid://cs1p6nf08bget" path="res://scripts/player/player_actions/JumpState.cs" id="5_la7tc"]
 [ext_resource type="Script" uid="uid://bev51rs8nebef" path="res://scripts/player/player_actions/WalkState.cs" id="6_otd1v"]
+[ext_resource type="Script" uid="uid://dgq6h7a3vrkj4" path="res://scripts/player/player_actions/KnockbackState.cs" id="8_la7tc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8cp6"]
 size = Vector2(21, 63)
@@ -45,6 +46,11 @@ Player = NodePath("../..")
 
 [node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character", "Player")]
 script = ExtResource("5_la7tc")
+Character = NodePath("../..")
+Player = NodePath("../..")
+
+[node name="KnockbackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Character", "Player")]
+script = ExtResource("8_la7tc")
 Character = NodePath("../..")
 Player = NodePath("../..")
 

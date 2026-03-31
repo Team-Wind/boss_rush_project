@@ -29,8 +29,7 @@ public partial class Player : CharacterBody2D
 
 		//status
 		public int HitPoints = 10;
-		public int InitialHitPoints = 5;
-		public float KnockbackForce = 100f;
+		public int CurrentHP;
 		public bool IsKnocked = false;
 
 		//random
@@ -63,8 +62,9 @@ public partial class Player : CharacterBody2D
 
 	public void TakeDamage(int amount, Vector2 sourcePosition)
 	{
-		HitPoints -= amount;
+		CurrentHP -= amount;
 		EmitSignal(SignalName.Hit, sourcePosition);
+		GD.Print($"vida atual: {CurrentHP}");
 	}
 
 	//private void FlipPlayer()

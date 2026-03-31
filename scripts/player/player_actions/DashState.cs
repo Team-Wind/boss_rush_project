@@ -31,21 +31,16 @@ public partial class DashState : State
 
 	public override void PhysicsUpdate(double delta)
     {
-        
         Character.Velocity = new Vector2(DashDirection * DashSpeed, 0);
         Character.MoveAndSlide();
 
         CurrentDistance = Math.Abs(Character.GlobalPosition.X - DashStartingPosition );
 
-        
         if (CurrentDistance >= DashDistance || Character.IsOnWall())
         {
             Player.Dashing = false;
             StateMachine.ChangeState("FallState");
         }
-
-        
-
     }
 
 	public override void Exit()

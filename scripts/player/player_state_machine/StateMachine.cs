@@ -44,7 +44,7 @@ public partial class StateMachine : Node
 
 	public void OnPlayerHit(Vector2 sourcePosition)
 	{
-		if(States["KnockbackState"] is KnockbackState kbState)
+		if(States["knockbackstate"] is KnockbackState kbState)
 		{
 			kbState.DamageSourcePosition = sourcePosition;
 		}
