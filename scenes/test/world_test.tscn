@@ -1,12 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvxfo558svogg"]
+[gd_scene load_steps=9 format=3 uid="uid://bvxfo558svogg"]
+
+[ext_resource type="PackedScene" uid="uid://c72jvxinlcxtf" path="res://scenes/test/player_test.tscn" id="1_l7drr"]
+[ext_resource type="Script" uid="uid://b3qnidat1w6ad" path="res://scripts/world_test/WorldTest.cs" id="1_p7hi7"]
+[ext_resource type="PackedScene" uid="uid://bckrki016ld6q" path="res://scenes/test/enemy_test.tscn" id="2_y0e01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j08u"]
-size = Vector2(1152, 251)
+size = Vector2(1152, 246)
 
-[node name="WorldTest" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_y0e01"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7hi7"]
+size = Vector2(104, 438)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(576, 522.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mulqk"]
+size = Vector2(52, 425)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7trgr"]
+size = Vector2(1155, 20)
+
+[node name="WorldTest" type="Node2D" node_paths=PackedStringArray("Player", "HPLabel")]
+script = ExtResource("1_p7hi7")
+Player = NodePath("CharacterBody2D")
+HPLabel = NodePath("Label")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 525)
 shape = SubResource("RectangleShape2D_7j08u")
+debug_color = Color(0.87261814, 0.34372988, 0.14710727, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_top = 399.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.25421286, 0.054277144, 0.0042437604, 1)
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox") instance=ExtResource("1_l7drr")]
+position = Vector2(130, 364)
+Hitbox = NodePath("../StaticBody2D/CollisionShape2D")
+
+[node name="Area2D" parent="." instance=ExtResource("2_y0e01")]
+position = Vector2(342, 362)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 434.0
+offset_bottom = 110.0
+label_settings = SubResource("LabelSettings_y0e01")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-53, 209)
+shape = SubResource("RectangleShape2D_p7hi7")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1180, 211.5)
+shape = SubResource("RectangleShape2D_mulqk")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(574, -2)
+shape = SubResource("RectangleShape2D_7trgr")

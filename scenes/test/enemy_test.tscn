@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bckrki016ld6q"]
+
+[ext_resource type="Script" uid="uid://jcx7fkdjnjl8" path="res://scripts/hazard_test/EnemyTest.cs" id="1_c3a3r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71bvd"]
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+script = ExtResource("1_c3a3r")
+DamageAmount = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0.8367708, 0.44817695, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_71bvd")

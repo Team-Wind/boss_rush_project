@@ -4,12 +4,14 @@ using System;
 public partial class IdleState : State
 {	
 	[Export] public CharacterBody2D Character;
+	[Export] public Player Player;
 	//[Export] public Player Player;
 
 	//aqui, o enter funciona como a entrada ao estado, e alteraremos as animações por esse método
 	public override void Enter()
 	{
 		//player.AnimationPlayer("spr_idle");
+		//GD.Print("Estou Idle!");
 	}
 
 	//função de processamento e atualização da física do jogador + velocidade
@@ -46,7 +48,7 @@ public partial class IdleState : State
 		}
 
 		//dash 
-		if (Input.IsActionPressed("Dash"))
+		if (Input.IsActionPressed("Dash") && !Player.Dashing && Player.DashTimer <= 0.0f)
 		{
 			StateMachine.ChangeState("DashState");
 		}

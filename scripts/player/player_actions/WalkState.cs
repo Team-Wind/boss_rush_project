@@ -40,7 +40,7 @@ public partial class WalkState : State
         }
 
         var dir_dash = Input.GetAxis("MoveLeft","MoveRight");
-        if (Input.IsActionPressed("Dash") && dir_dash != 0)
+        if (Input.IsActionPressed("Dash") && dir_dash != 0 && !Player.Dashing && Player.DashTimer <= 0.0f)
         {
             StateMachine.ChangeState("DashState");
         }
