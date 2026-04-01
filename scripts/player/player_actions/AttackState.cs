@@ -3,7 +3,7 @@ using System;
 
 public partial class AttackState : State
 {
-	[Export] public CharacterBody2D Character;
+	[Export] public Player Player;
 	public override void Enter()
 	{
 	}

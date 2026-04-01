@@ -3,7 +3,6 @@ using System;
 
 public partial class DashState : State
 {
-	[Export] public CharacterBody2D Character;
 	[Export] public Player Player;
     public float DashSpeed = 700.0f;       
     public float DashDistance = 150.0f;    
@@ -21,22 +20,28 @@ public partial class DashState : State
         else
             DashDirection = Player.FacingDirection != 0 ? Player.FacingDirection : 1;
 
-        DashStartingPosition  = Character.GlobalPosition.X;
+        DashStartingPosition  = Player
+        .GlobalPosition.X;
         CurrentDistance = 0.0f;
         Player.Dashing = true;
         
-        Character.Velocity = new Vector2(DashDirection * DashSpeed, 0);
+        Player
+        .Velocity = new Vector2(DashDirection * DashSpeed, 0);
         Player.DashTimer = DashCooldown;
     }
 
 	public override void PhysicsUpdate(double delta)
     {
-        Character.Velocity = new Vector2(DashDirection * DashSpeed, 0);
-        Character.MoveAndSlide();
+        Player
+        .Velocity = new Vector2(DashDirection * DashSpeed, 0);
+        Player
+        .MoveAndSlide();
 
-        CurrentDistance = Math.Abs(Character.GlobalPosition.X - DashStartingPosition );
+        CurrentDistance = Math.Abs(Player
+        .GlobalPosition.X - DashStartingPosition );
 
-        if (CurrentDistance >= DashDistance || Character.IsOnWall())
+        if (CurrentDistance >= DashDistance || Player
+        .IsOnWall())
         {
             Player.Dashing = false;
             StateMachine.ChangeState("FallState");

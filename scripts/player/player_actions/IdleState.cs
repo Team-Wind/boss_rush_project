@@ -3,7 +3,6 @@ using System;
 
 public partial class IdleState : State
 {	
-	[Export] public CharacterBody2D Character;
 	[Export] public Player Player;
 	//[Export] public Player Player;
 
@@ -18,18 +17,18 @@ public partial class IdleState : State
 	public override void PhysicsUpdate(double delta)
 	{
 		//jogador parado, nao tem velocidade
-		var vel = Character.Velocity;
+		var vel = Player.Velocity;
 		vel.X = 0;
 		vel.Y = 0;
 
 		//verificação de contato com o solo (vem para o physicsupdate por nao depender de comando do jogador)
-		if (!Character.IsOnFloor())
+		if (!Player.IsOnFloor())
 		{
 			StateMachine.ChangeState("FallState");
 		}
 
-		Character.Velocity = vel;
-		Character.MoveAndSlide();
+		Player.Velocity = vel;
+		Player.MoveAndSlide();
 	}
 
 	//de acordo com o input, o estado mudará
