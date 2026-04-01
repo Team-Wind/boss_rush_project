@@ -7,6 +7,8 @@ using System.Text;
 public partial class Player : CharacterBody2D
 {
 	[Export] private AnimatedSprite2D Animation;
+	[Export] private AnimationPlayer Effects;
+	[Export] private Timer IframeDuration;
 	[Export] public CollisionShape2D Hitbox;
 	//esse sinal serve para indicar que o player levou dano
 	[Signal] public delegate void HitEventHandler(Vector2 sourcePosition);
@@ -25,12 +27,13 @@ public partial class Player : CharacterBody2D
 		public bool Dashing = false;
 		public float DashCooldown = 0.5f;
 		public float DashTimer = 0.0f;
-		public bool Invunerable = false;
 
 		//status
 		public int HitPoints = 10;
 		public int CurrentHP;
 		public bool IsKnocked = false;
+		public bool IsInvulnerable = false;
+		
 
 		//random
 		public int FacingDirection = 1;
@@ -60,11 +63,40 @@ public partial class Player : CharacterBody2D
 		Animation.Play(name);
 	}
 
-	public void TakeDamage(int amount, Vector2 sourcePosition)
-	{
+	public async void TakeDamage(int amount, Vector2 sourcePosition)
+	{	
+		//finaliza a função caso o jogador estiver invulneravel;
+		if (IsInvulnerable) return;
+
+		//logica de decremento de hp / emissão de sinal de hit
 		CurrentHP -= amount;
 		EmitSignal(SignalName.Hit, sourcePosition);
 		GD.Print($"vida atual: {CurrentHP}");
+
+		StartIframes();
+
+		//efeito de congelamento da tela, impactframes (estilo hollow knight)
+		//Engine.TimeScale = 0.10f; 
+		//await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
+		//Engine.TimeScale = 1.0f; 
+	}
+
+	public async void StartIframes()
+	{
+		//inicia a invulnerabilidade
+		IsInvulnerable = true;
+
+		Effects.Play("HurtBlink");
+
+		//inicia o timer e espera o final
+		IframeDuration.Start();
+		await ToSignal(IframeDuration, Timer.SignalName.Timeout);
+		
+		//espera o timer acabar e toca a animação de reset (alpha do color rect = 0)
+		Effects.Play("RESET");
+		
+		//finaliza a invulnerabilidade
+		IsInvulnerable = false;
 	}
 
 	//private void FlipPlayer()

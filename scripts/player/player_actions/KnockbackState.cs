@@ -38,10 +38,6 @@ public partial class KnockbackState : State
 
 	}
 
-	public override void HandleInput(InputEvent @event)
-	{
-	}
-
     public override void Exit()
     {
 		Player.IsKnocked = false;
