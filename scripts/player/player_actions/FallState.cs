@@ -3,7 +3,6 @@ using System;
 
 public partial class FallState : State
 {
-	[Export] CharacterBody2D Character;
 	[Export] Player Player;
 
 	//variaveis de classe
@@ -22,16 +21,16 @@ public partial class FallState : State
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void PhysicsUpdate(double delta)
 	{
-		var vel = Character.Velocity;
+		var vel =Player.Velocity;
 		vel.Y += Gravity * (float)delta;
 
 		var direction = Input.GetAxis("MoveLeft","MoveRight");
 		vel.X = direction * WalkSpeed;
 
-		Character.Velocity = vel;
-		Character.MoveAndSlide();
+		Player.Velocity = vel;
+		Player.MoveAndSlide();
 
-		if (Character.IsOnFloor())
+		if (Player.IsOnFloor())
 		{
 			if (direction == 0)
 			{

@@ -3,7 +3,6 @@ using System;
 
 public partial class WalkState : State
 {
-	[Export] public CharacterBody2D Character; 
     [Export] public Player Player;
     protected const float WalkSpeed = 150.0f; //variavel local que determina a velocidade do andar
 
@@ -14,12 +13,12 @@ public partial class WalkState : State
 
     public override void PhysicsUpdate(double delta)
     {
-        if (!Character.IsOnFloor())
+        if (!Player.IsOnFloor())
         {
             StateMachine.ChangeState("FallState"); //fall state nao tem input, cai no physics update
         } 
 
-        var vel = Character.Velocity;
+        var vel = Player.Velocity;
         var direction = Input.GetAxis("MoveLeft","MoveRight"); //verificação de direção
 
         if (direction == 0)
@@ -28,8 +27,8 @@ public partial class WalkState : State
         }
 
         vel.X = direction * WalkSpeed;
-        Character.Velocity = vel;
-        Character.MoveAndSlide();
+        Player.Velocity = vel;
+        Player.MoveAndSlide();
     }
 
     public override void HandleInput(InputEvent @event)
