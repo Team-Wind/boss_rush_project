@@ -68,20 +68,17 @@ public partial class Player : CharacterBody2D
 		//finaliza a função caso o jogador estiver invulneravel;
 		if (IsInvulnerable) return;
 
+		FrameFreeze(0.05, 0.04);
+
 		//logica de decremento de hp / emissão de sinal de hit
 		CurrentHP -= amount;
 		EmitSignal(SignalName.Hit, sourcePosition);
 		GD.Print($"vida atual: {CurrentHP}");
 
-		StartIframes();
-
-		//efeito de congelamento da tela, impactframes (estilo hollow knight)
-		//Engine.TimeScale = 0.10f; 
-		//await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
-		//Engine.TimeScale = 1.0f; 
+		StartHurt();
 	}
 
-	public async void StartIframes()
+	public async void StartHurt()
 	{
 		//inicia a invulnerabilidade
 		IsInvulnerable = true;
@@ -94,9 +91,17 @@ public partial class Player : CharacterBody2D
 		
 		//espera o timer acabar e toca a animação de reset (alpha do color rect = 0)
 		Effects.Play("RESET");
-		
+
 		//finaliza a invulnerabilidade
 		IsInvulnerable = false;
+	}
+
+	public async void FrameFreeze(double timeScale, double duration)
+	{
+		Engine.TimeScale = timeScale;
+		await ToSignal(GetTree().CreateTimer(duration, false, true), SceneTreeTimer.SignalName.Timeout);
+
+		Engine.TimeScale = 1.0;
 	}
 
 	//private void FlipPlayer()

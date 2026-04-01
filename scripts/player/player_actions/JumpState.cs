@@ -3,7 +3,6 @@ using System;
 
 public partial class JumpState : State
 {	
-	[Export] CharacterBody2D Character;
 	[Export] Player Player;
 
 	//variaveis de classe
@@ -14,15 +13,15 @@ public partial class JumpState : State
 	public override void Enter()
 	{
 		//Player.AnimationPlayer("abuble");
-		var vel = Character.Velocity;
+		var vel = Player.Velocity;
 		vel.Y = JumpSpeed;
-		Character.Velocity = vel;
+		Player.Velocity = vel;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void PhysicsUpdate(double delta)
 	{
-		var vel = Character.Velocity;
+		var vel = Player.Velocity;
 		vel.Y += Gravity * (float)delta;
 
 		if (vel.Y > 0)
@@ -32,10 +31,10 @@ public partial class JumpState : State
 
 		var direction = Input.GetAxis("MoveLeft","MoveRight");
 		vel.X = direction * WalkSpeed;
-		Character.Velocity = vel;
-		Character.MoveAndSlide();
+		Player.Velocity = vel;
+		Player.MoveAndSlide();
 
-		if (Character.IsOnFloor())
+		if (Player.IsOnFloor())
 		{
 			if (direction == 0)
 			{
