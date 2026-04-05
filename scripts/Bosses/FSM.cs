@@ -4,6 +4,9 @@ using Godot;
 public abstract partial class FSM : Node2D
 {
     private Node debug;
+    public BossStateMachine BossStateMachine;
+    public Player playerLocation;
+
     private Node player;
 
     // private AnimationPlayer animationPlayer;
@@ -18,5 +21,5 @@ public abstract partial class FSM : Node2D
         
     }
 
-	public virtual void HandleInput(InputEvent inputEvent)	{}
+	public virtual void ApplyStates(Player playerLocation)	{}
 }
