@@ -35,7 +35,7 @@ public partial class StateMachine : Node
 			ChangeState(InitialState.Name.ToString().ToLower());
 		}
 
-		if (StateLabel != null) StateLabel.Text = "Estado: " + CurrentState?.Name;
+		//if (StateLabel != null) StateLabel.Text = "Estado: " + CurrentState?.Name;
 
 		//verificação de hit no player (escutador de sinal)
 			var player = GetParent<Player>();
