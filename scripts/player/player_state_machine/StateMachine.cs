@@ -63,7 +63,7 @@ public partial class StateMachine : Node
 	}
 
 	//para logica aplicada em fisica
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (CurrentState != null)
 		{
