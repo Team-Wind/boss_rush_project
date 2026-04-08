@@ -4,10 +4,13 @@ using System;
 public abstract partial class Boss : CharacterBody2D
 {
 	[Export] public Player PlayerRef;
+	[Export] public AnimationPlayer AnimationPlayer;
 	[Export] public BStateMachine BFSM;
 	[Export] public int MaxHealth = 100;
+	[Export] protected Sprite2D Sprite2D;
 	protected int CurrentHealth;
     protected bool IsDead = false;
+	protected Vector2 Direction;
 
 	[Signal] public delegate void BossDiedEventHandler();
 
@@ -32,7 +35,23 @@ public abstract partial class Boss : CharacterBody2D
 		if (CurrentHealth <= 0)
 		{
 			IsDead = true; 
-			BFSM.ChangeState("DeathState");
+			BFSM.ChangeState("BossDeath");
+		}
+	}
+
+	public virtual void FacePlayer()
+	{
+		if (PlayerRef == null || Sprite2D == null) return;
+
+		Direction = PlayerRef.GlobalPosition - GlobalPosition;
+
+		if (Direction.X < 0)
+		{
+			Sprite2D.FlipH = true;
+		}
+		else
+		{
+			Sprite2D.FlipH = false;
 		}
 	}
 

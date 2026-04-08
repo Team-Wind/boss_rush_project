@@ -7,16 +7,16 @@ public partial class BStateMachine : Node
 	[Export] public BState InitialState;
 	[Export] Label BossLabel;
     private BState CurrentState;
-	private Dictionary<string, BState> BStates = new(); 
+	public Dictionary<string, BState> BStates = new(); 
 
-	public void Setup(Boss boss)
+	public override void _Ready()
 	{
 		foreach(Node child in GetChildren())
 		{
 			if (child is BState state)
 			{
-				state.Setup(boss,this);
 				BStates[state.Name.ToString().ToLower()] = state;
+				state.BStateMachine = this;
 			}
 
 		}

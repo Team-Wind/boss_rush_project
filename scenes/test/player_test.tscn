@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://c72jvxinlcxtf"]
 
 [ext_resource type="Script" uid="uid://xwcjf0mlfe4x" path="res://scripts/player/Player.cs" id="1_h8cp6"]
-[ext_resource type="Texture2D" uid="uid://rmq1cc0ygp5i" path="res://assets/player_test/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png" id="2_fp4r3"]
+[ext_resource type="Texture2D" uid="uid://rmq1cc0ygp5i" path="res://assets/sprites/player_test/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png" id="2_fp4r3"]
 [ext_resource type="Script" uid="uid://dns15axn0vi8i" path="res://scripts/player/player_actions/DashState.cs" id="2_mb4fa"]
 [ext_resource type="Script" uid="uid://e77hudvoo7cc" path="res://scripts/player/player_actions/FallState.cs" id="3_fp4r3"]
 [ext_resource type="Script" uid="uid://k34bhspxt130" path="res://scripts/player/player_state_machine/StateMachine.cs" id="3_teb4e"]
@@ -52,9 +52,9 @@ _data = {
 &"RESET": SubResource("Animation_otd1v")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Effects", "IframeDuration", "Hitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Effects", "IframeDuration", "Hitbox")]
 script = ExtResource("1_h8cp6")
-Effects = NodePath("AnimationPlayer")
+Effects = NodePath("Effects")
 IframeDuration = NodePath("HurtTimer")
 Hitbox = NodePath("CollisionShape2D")
 
@@ -77,7 +77,7 @@ color = Color(0.3372549, 0.105882354, 0.12156863, 0)
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState", "StateLabel")]
 script = ExtResource("3_teb4e")
 InitialState = NodePath("IdleState")
-StateLabel = NodePath("../Label")
+StateLabel = NodePath("../PlayerDebug")
 
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player")]
 script = ExtResource("2_mb4fa")
@@ -103,13 +103,13 @@ Player = NodePath("../..")
 script = ExtResource("6_otd1v")
 Player = NodePath("../..")
 
-[node name="Label" type="Label" parent="."]
+[node name="PlayerDebug" type="Label" parent="."]
 offset_left = -25.0
 offset_top = -51.0
 offset_right = 26.0
 offset_bottom = -28.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_otd1v")
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BossWalk : BState
+public partial class BossTP : BState
 {
 	public BStateMachine BStateMachine;
 
@@ -9,7 +9,7 @@ public partial class BossWalk : BState
 
 	public override void Enter()
 	{
-		Boss.AnimationPlayer.Play("boss_walk");
+		Boss.AnimationPlayer.Play("boss_tp");
 	}
 	public override void PhysicsUpdate(double delta){}
 	public override void Exit() {}

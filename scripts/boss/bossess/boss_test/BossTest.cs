@@ -11,7 +11,6 @@ public partial class BossTest : Boss
 	}
 
 	public override void InitializeBoss()
-	{
-		
+	{	
 	}
 }
