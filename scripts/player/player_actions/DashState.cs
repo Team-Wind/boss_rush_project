@@ -32,16 +32,12 @@ public partial class DashState : State
 
 	public override void PhysicsUpdate(double delta)
     {
-        Player
-        .Velocity = new Vector2(DashDirection * DashSpeed, 0);
-        Player
-        .MoveAndSlide();
+        Player.Velocity = new Vector2(DashDirection * DashSpeed, 0);
+        Player.MoveAndSlide();
 
-        CurrentDistance = Math.Abs(Player
-        .GlobalPosition.X - DashStartingPosition );
+        CurrentDistance = Math.Abs(Player.GlobalPosition.X - DashStartingPosition );
 
-        if (CurrentDistance >= DashDistance || Player
-        .IsOnWall())
+        if (CurrentDistance >= DashDistance || Player.IsOnWall())
         {
             Player.Dashing = false;
             StateMachine.ChangeState("FallState");

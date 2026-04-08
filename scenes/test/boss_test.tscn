@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxb0yknsv3xqs"]
+[gd_scene load_steps=3 format=3 uid="uid://bxb0yknsv3xqs"]
+
+[ext_resource type="Script" uid="uid://cfior3ans8237" path="res://scripts/boss/bossess/boss_test/BossTest.cs" id="1_ob16j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o34bv"]
 
 [node name="BossTest" type="CharacterBody2D"]
+script = ExtResource("1_ob16j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_o34bv")
