@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxb0yknsv3xqs"]
+[gd_scene load_steps=15 format=3 uid="uid://bxb0yknsv3xqs"]
 
 [ext_resource type="Script" uid="uid://c47uawptxxjvp" path="res://scripts/boss/bossess/boss_test/BossTest.cs" id="1_ob16j"]
 [ext_resource type="Texture2D" uid="uid://cd41x1l6oro36" path="res://assets/sprites/Undead executioner/Undead executioner puppet/png/idle.png" id="2_13cmy"]
@@ -9,8 +9,11 @@
 [ext_resource type="Script" uid="uid://bh0ws7detglbp" path="res://scripts/boss/bossess/boss_test/boss_actions/BossTP.cs" id="7_u1amg"]
 [ext_resource type="Script" uid="uid://bq3nqi8c6w72u" path="res://scripts/boss/bossess/boss_test/boss_actions/BossWalk.cs" id="8_44tvx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reuul"]
+size = Vector2(40, 64)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o34bv"]
-size = Vector2(37, 61)
+size = Vector2(48, 72)
 
 [sub_resource type="Animation" id="Animation_13cmy"]
 resource_name = "boss_idle"
@@ -45,23 +48,33 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_reuul"]
+resource_name = "boss_attack"
+step = 0.1
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j7d5u"]
 _data = {
 &"RESET": SubResource("Animation_0my3e"),
+&"boss_attack": SubResource("Animation_reuul"),
 &"boss_idle": SubResource("Animation_13cmy")
 }
 
-[node name="BossTest" type="CharacterBody2D" node_paths=PackedStringArray("AnimationPlayer", "BFSM", "Sprite2D")]
+[node name="BossTest" type="CharacterBody2D" node_paths=PackedStringArray("ContactHitbox", "AnimationPlayer", "BFSM", "Sprite2D")]
 script = ExtResource("1_ob16j")
+ContactHitbox = NodePath("Area2D")
 AnimationPlayer = NodePath("AnimationPlayer")
 BFSM = NodePath("BStateMachine")
 Sprite2D = NodePath("spr_boss_idle")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 8.5)
-shape = SubResource("RectangleShape2D_o34bv")
+[node name="CollisionHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_reuul")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="ContactHitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_o34bv")
 
 [node name="spr_boss_idle" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -106,3 +119,5 @@ offset_right = 21.0
 offset_bottom = -38.0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
