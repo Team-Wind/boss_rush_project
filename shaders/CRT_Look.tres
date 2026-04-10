@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c1psykr0fq8ln"]
+
+[ext_resource type="Shader" uid="uid://b40iti7jr6vsj" path="res://shaders/CRT_Look.gdshader" id="1_ocigb"]
+
+[resource]
+shader = ExtResource("1_ocigb")
+shader_parameter/scanline_count = 300.0

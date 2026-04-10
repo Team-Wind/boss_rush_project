@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://sknj3j6a1wj6"]
+
+[ext_resource type="PackedScene" uid="uid://r0fff38r4ts2" path="res://scenes/test/settings_menu.tscn" id="1_o0sno"]
+
+[node name="ControlsMenu" instance=ExtResource("1_o0sno")]
