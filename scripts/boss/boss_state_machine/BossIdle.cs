@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class BossIdle : BState
+public partial class BossIdle : BState
 {
 	[Export] Timer ChooseStateTimer;
 	public override void Enter()
@@ -17,15 +17,24 @@ public abstract partial class BossIdle : BState
 				ChooseStateTimer.Timeout += OnTimeout;
 			}
 		}
-
 	}
-	public override void PhysicsUpdate(double delta){}
+
+	public override void PhysicsUpdate(double delta)
+	{
+		var vel = Boss.Velocity;
+		vel.X = 0;
+		vel.Y = 0;
+		Boss.Velocity = vel;
+		Boss.MoveAndSlide();
+	}
 	public override void Exit()
 	{
 		//finaliza o timer quando sai do estado
 		ChooseStateTimer?.Stop();
 	}
-    public override void Update(double delta) {}
+    public override void Update(double delta)
+	{
+	}
 
 	private void OnTimeout()
 	{
@@ -34,5 +43,8 @@ public abstract partial class BossIdle : BState
 	}
 
 	//função de escolher o estado (por enquanto abstract mas provavelmente será virtual+implementada aqui)
-	protected abstract void DecideState();
+	protected void DecideState()
+	{
+	
+	}
 }
