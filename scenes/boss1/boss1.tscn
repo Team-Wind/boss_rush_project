@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://caet384aovsb1"]
+
+[ext_resource type="Script" uid="uid://de3kidd2xhc0y" path="res://scripts/boss/bossess/boss1/Boss1.cs" id="1_7pt6b"]
+[ext_resource type="Script" uid="uid://k1fywbyenmn7" path="res://scripts/boss/boss_state_machine/BossIdle.cs" id="2_f3mj3"]
+[ext_resource type="Texture2D" uid="uid://cb4mb780h4f6n" path="res://assets/sprites/spr_viking.png" id="2_nt1nc"]
+[ext_resource type="Script" uid="uid://c71dm27dc7b0i" path="res://scripts/boss/boss_state_machine/BStateMachine.cs" id="2_ux2ok"]
+[ext_resource type="Script" uid="uid://ukx6dbibdcmi" path="res://scripts/boss/bossess/boss1/boss1_actions/Boss1Walk.cs" id="3_10dqx"]
+[ext_resource type="Script" uid="uid://bfsagc0xlx0bm" path="res://scripts/boss/bossess/boss1/boss1_actions/Boss1Run.cs" id="4_ux2ok"]
+[ext_resource type="Script" uid="uid://ch0q47a6fn705" path="res://scripts/boss/bossess/boss1/boss1_actions/Boss1ThrowAxe.cs" id="5_nt1nc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3mj3"]
+size = Vector2(37, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ux2ok"]
+size = Vector2(64, 84.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obq32"]
+
+[node name="Boss1" type="CharacterBody2D" node_paths=PackedStringArray("ContactHitbox", "Sprite2D", "BFSM")]
+script = ExtResource("1_7pt6b")
+ContactHitbox = NodePath("Area2D")
+Sprite2D = NodePath("debug_sprite")
+BFSM = NodePath("BStateMachine")
+StaggerCounter = 15
+MeeleeRange = 30.0
+
+[node name="debug_sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.24999997, 0.25000006)
+texture = ExtResource("2_nt1nc")
+
+[node name="CollisionHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_f3mj3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="ContactHitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2.25)
+shape = SubResource("RectangleShape2D_ux2ok")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_obq32")
+
+[node name="BStateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState", "BossLabel")]
+script = ExtResource("2_ux2ok")
+InitialState = NodePath("BossIdle")
+BossLabel = NodePath("../debug")
+
+[node name="BossIdle" type="Node" parent="BStateMachine" node_paths=PackedStringArray("ChooseStateTimer", "Boss")]
+script = ExtResource("2_f3mj3")
+ChooseStateTimer = NodePath("../../StateSelectTimer")
+Boss = NodePath("../..")
+
+[node name="Boss1Walk" type="Node" parent="BStateMachine" node_paths=PackedStringArray("Boss")]
+script = ExtResource("3_10dqx")
+Boss = NodePath("../..")
+
+[node name="Boss1Run" type="Node" parent="BStateMachine" node_paths=PackedStringArray("Boss")]
+script = ExtResource("4_ux2ok")
+Boss = NodePath("../..")
+
+[node name="Boss1ThrowAxe" type="Node" parent="BStateMachine" node_paths=PackedStringArray("Boss")]
+script = ExtResource("5_nt1nc")
+Boss = NodePath("../..")
+
+[node name="StateSelectTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="debug" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -70.0
+offset_right = 20.0
+offset_bottom = -47.0
+metadata/_edit_use_anchors_ = true
