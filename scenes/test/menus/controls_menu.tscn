@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://sknj3j6a1wj6"]
+
+[ext_resource type="PackedScene" uid="uid://r0fff38r4ts2" path="res://scenes/test/menus/settings_menu.tscn" id="1_o0sno"]
+[ext_resource type="Script" uid="uid://c68wpmfxjslq1" path="res://scripts/menu/settings/ControlsMenu.cs" id="2_eqgd7"]
+[ext_resource type="FontFile" uid="uid://5jggbdunds3f" path="res://assets/font/CozetteVector.ttf" id="3_l2ctk"]
+
+[node name="ControlsMenu" node_paths=PackedStringArray("MoveLeftLabel", "MoveRightLabel", "JumpLabel", "DashLabel", "MoveLeftButton", "MoveRightButton", "JumpButton", "DashButton") instance=ExtResource("1_o0sno")]
+script = ExtResource("2_eqgd7")
+MoveLeftLabel = NodePath("VBoxContainer/Option1/MoveLeft")
+MoveRightLabel = NodePath("VBoxContainer/Option2/MoveRight")
+JumpLabel = NodePath("VBoxContainer/Option3/Jump")
+DashLabel = NodePath("VBoxContainer/Option4/Dash")
+MoveLeftButton = NodePath("VBoxContainer/Option1/ChangeLeftButton")
+MoveRightButton = NodePath("VBoxContainer/Option2/ChangeRightButton")
+JumpButton = NodePath("VBoxContainer/Option3/ChangeJumpButton")
+DashButton = NodePath("VBoxContainer/Option4/ChangeDashButton")
+
+[node name="Option1" type="HBoxContainer" parent="VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MoveLeft" type="Label" parent="VBoxContainer/Option1" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l2ctk")
+text = "Move Left"
+
+[node name="ChangeLeftButton" type="Button" parent="VBoxContainer/Option1" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Option2" type="HBoxContainer" parent="VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MoveRight" type="Label" parent="VBoxContainer/Option2" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l2ctk")
+text = "Move Right"
+
+[node name="ChangeRightButton" type="Button" parent="VBoxContainer/Option2" index="1"]
+layout_mode = 2
+
+[node name="Option3" type="HBoxContainer" parent="VBoxContainer" index="3"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Jump" type="Label" parent="VBoxContainer/Option3" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l2ctk")
+text = "Jump"
+
+[node name="ChangeJumpButton" type="Button" parent="VBoxContainer/Option3" index="1"]
+layout_mode = 2
+
+[node name="Option4" type="HBoxContainer" parent="VBoxContainer" index="4"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Dash" type="Label" parent="VBoxContainer/Option4" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_l2ctk")
+text = "Dash"
+
+[node name="ChangeDashButton" type="Button" parent="VBoxContainer/Option4" index="1"]
+layout_mode = 2

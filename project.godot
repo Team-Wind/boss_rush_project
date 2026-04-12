@@ -15,9 +15,17 @@ run/main_scene="uid://bv26tedd4o8bi"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LanguageManager="*res://scripts/autoloads/LanguageManager.cs"
+
 [dotnet]
 
 project/assembly_name="BossRushProject"
+
+[gui]
+
+theme/custom_font="uid://5jggbdunds3f"
 
 [input]
 
@@ -45,3 +53,7 @@ Dash={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://scripts/menu/translations.en.translation", "res://scripts/menu/translations.pt_BR.translation")

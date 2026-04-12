@@ -1,0 +1,16 @@
+keys,en,pt_BR
+MENU_PLAY,Play,Jogar
+MENU_SETTINGS,Settings,Configurações
+MENU_QUIT,Quit,Sair
+MENU_CONTROLS,Controls,Controles
+MENU_AUDIO,Audio,Áudio
+MENU_LANGUAGE,Language,Idioma
+MENU_BACK,Back,Voltar
+AUDIO_MASTER,Master,Geral
+AUDIO_MUSIC,Music,Música
+AUDIO_SFX,Sound Effects,Efeitos Sonoros
+LANGUAGE_LABEL,Language,Idioma
+CONTROLS_LEFT,Left,Esquerda
+CONTROLS_RIGHT,Right,Direita
+CONTROLS_JUMP,Jump,Pular
+CONTROLS_DASH,Dash,Esquivar

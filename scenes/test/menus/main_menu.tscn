@@ -1,0 +1,462 @@
+[gd_scene load_steps=18 format=3 uid="uid://bv26tedd4o8bi"]
+
+[ext_resource type="Script" uid="uid://b3ccg2xi3yujl" path="res://scripts/menu/MainMenu.cs" id="1_18iga"]
+[ext_resource type="FontFile" uid="uid://5jggbdunds3f" path="res://assets/font/CozetteVector.ttf" id="2_rg8hm"]
+[ext_resource type="PackedScene" uid="uid://sknj3j6a1wj6" path="res://scenes/test/menus/controls_menu.tscn" id="3_4plqj"]
+[ext_resource type="PackedScene" uid="uid://b0sful6hix0um" path="res://scenes/test/menus/audio_menu.tscn" id="4_68ckj"]
+[ext_resource type="PackedScene" uid="uid://bcxntj71nnvdl" path="res://scenes/test/menus/language_menu.tscn" id="5_n6wdf"]
+[ext_resource type="Material" uid="uid://c1psykr0fq8ln" path="res://shaders/CRT_Look.tres" id="6_gyfqr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cof7f"]
+
+[sub_resource type="Animation" id="Animation_il38r"]
+resource_name = "AudioMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioMenu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fxch5"]
+resource_name = "AudioMenuBack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioMenu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0alnf"]
+resource_name = "ControlsMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlsMenu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlsMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_q68xe"]
+resource_name = "ControlsMenuBack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ControlsMenu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.001358e-05, 1.001358e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_vn8eg"]
+resource_name = "LanguageMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LanguageMenu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LanguageMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4nmjh"]
+resource_name = "LanguageMenuBack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LanguageMenu:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_23or4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlsMenu:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioMenu:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LanguageMenu:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioMenu:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ControlsMenu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LanguageMenu:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Settings:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rad1d"]
+resource_name = "Settings"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Settings:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_88q2x"]
+resource_name = "SettingsBack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Settings:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.001358e-05, 1.001358e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwquj"]
+_data = {
+&"AudioMenu": SubResource("Animation_il38r"),
+&"AudioMenuBack": SubResource("Animation_fxch5"),
+&"ControlsMenu": SubResource("Animation_0alnf"),
+&"ControlsMenuBack": SubResource("Animation_q68xe"),
+&"LanguageMenu": SubResource("Animation_vn8eg"),
+&"LanguageMenuBack": SubResource("Animation_4nmjh"),
+&"RESET": SubResource("Animation_23or4"),
+&"Settings": SubResource("Animation_rad1d"),
+&"SettingsBack": SubResource("Animation_88q2x")
+}
+
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("AnimationPlayer", "Cursor", "Settings", "PlayButton", "SettingsButton", "QuitButton", "SettingsBackButton", "SettingsControlsButton", "SettingsAudioButton", "SettingsLanguageButton", "ControlsMenu", "AudioMenu", "LanguageMenu") groups=["menus"]]
+script = ExtResource("1_18iga")
+AnimationPlayer = NodePath("AnimationPlayer")
+Cursor = NodePath("Cursor")
+Settings = NodePath("Settings")
+PlayButton = NodePath("Main/VBoxContainer/PlayButton")
+SettingsButton = NodePath("Main/VBoxContainer/SettingsButton")
+QuitButton = NodePath("Main/VBoxContainer/QuitButton")
+SettingsBackButton = NodePath("Settings/Options/SettingsBackButton")
+SettingsControlsButton = NodePath("Settings/Options/HBoxContainer/ControlsButton")
+SettingsAudioButton = NodePath("Settings/Options/HBoxContainer/AudioButton")
+SettingsLanguageButton = NodePath("Settings/Options/HBoxContainer/LanguageButton")
+ControlsMenu = NodePath("ControlsMenu")
+AudioMenu = NodePath("AudioMenu")
+LanguageMenu = NodePath("LanguageMenu")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.25490198, 0.32156864, 1)
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="PlayButton" type="Button" parent="Main/VBoxContainer"]
+modulate = Color(0, 0.37254903, 0.4862745, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_rg8hm")
+theme_override_font_sizes/font_size = 24
+
+[node name="SettingsButton" type="Button" parent="Main/VBoxContainer"]
+modulate = Color(0, 0.37254903, 0.4862745, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_rg8hm")
+theme_override_font_sizes/font_size = 24
+
+[node name="QuitButton" type="Button" parent="Main/VBoxContainer"]
+modulate = Color(0, 0.37254903, 0.4862745, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_rg8hm")
+theme_override_font_sizes/font_size = 24
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.34600002
+anchor_top = 0.31300002
+anchor_right = 0.34600002
+anchor_bottom = 0.31300002
+offset_left = 0.4079895
+offset_top = 0.17597961
+offset_right = 0.4079895
+offset_bottom = 1.1759796
+
+[node name="Lines" type="Node2D" parent="Settings"]
+position = Vector2(1, 0)
+
+[node name="Line1" type="Line2D" parent="Settings/Lines"]
+points = PackedVector2Array(0, 1, 101, 17)
+width = 2.0
+default_color = Color(0, 0.58396524, 0.35303923, 1)
+metadata/_edit_lock_ = true
+
+[node name="Line2" type="Line2D" parent="Settings/Lines"]
+points = PackedVector2Array(-1, 1, 101, 78)
+width = 2.0
+default_color = Color(0, 0.58431375, 0.3529412, 1)
+metadata/_edit_lock_ = true
+
+[node name="Options" type="VBoxContainer" parent="Settings"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = -3.0
+offset_right = 701.0
+offset_bottom = 397.0
+size_flags_horizontal = 3
+
+[node name="SettingsBackButton" type="Button" parent="Settings/Options"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "   x   "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/Options"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlsButton" type="Button" parent="Settings/Options/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Controls"
+
+[node name="AudioButton" type="Button" parent="Settings/Options/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Audio"
+
+[node name="LanguageButton" type="Button" parent="Settings/Options/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Language"
+
+[node name="Panel" type="Panel" parent="Settings"]
+modulate = Color(0, 0.25490198, 0.32156864, 1)
+layout_mode = 0
+offset_left = 101.0
+offset_top = -3.0
+offset_right = 701.0
+offset_bottom = 397.0
+mouse_filter = 2
+
+[node name="ControlsMenu" parent="." instance=ExtResource("3_4plqj")]
+visible = false
+pivot_offset = Vector2(572, 403)
+
+[node name="AudioMenu" parent="." instance=ExtResource("4_68ckj")]
+visible = false
+pivot_offset = Vector2(754, 401)
+
+[node name="LanguageMenu" parent="." instance=ExtResource("5_n6wdf")]
+visible = false
+pivot_offset = Vector2(939, 399)
+
+[node name="Cursor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Cursor" groups=["menus"]]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_cof7f")
+
+[node name="CRT" type="ColorRect" parent="."]
+material = ExtResource("6_gyfqr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bwquj")
+}

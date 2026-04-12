@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://r0fff38r4ts2"]
+
+[ext_resource type="Script" uid="uid://cwv4877m4ohgm" path="res://scripts/menu/settings/SettingsMenu.cs" id="1_5q08f"]
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("BackButton") groups=["menus"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5q08f")
+BackButton = NodePath("VBoxContainer/BackButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.25490198, 0.32156864, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "   x   "

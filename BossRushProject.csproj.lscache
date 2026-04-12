@@ -58,10 +58,15 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
  .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
  BossRushProject.AssemblyInfo.cs
 scripts/
+ autoloads/LanguageManager.cs
  hazard_test/EnemyTest.cs
  menu/
   MainMenu.cs
-  settings/SettingsMenu.cs
+  settings/
+   AudioMenu.cs
+   ControlsMenu.cs
+   LanguageMenu.cs
+   SettingsMenu.cs
  player/
   Player.cs
   player_actions/

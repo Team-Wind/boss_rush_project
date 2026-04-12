@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcxntj71nnvdl"]
+
+[ext_resource type="PackedScene" uid="uid://r0fff38r4ts2" path="res://scenes/test/menus/settings_menu.tscn" id="1_kwl7m"]
+[ext_resource type="Script" uid="uid://bn5xr01ugjn7" path="res://scripts/menu/settings/LanguageMenu.cs" id="2_ddong"]
+
+[node name="LanguageMenu" node_paths=PackedStringArray("LanguageLabel", "EnglishButton", "PortugueseButton") instance=ExtResource("1_kwl7m")]
+script = ExtResource("2_ddong")
+LanguageLabel = NodePath("VBoxContainer/LanguageLabel")
+EnglishButton = NodePath("VBoxContainer/ENButton")
+PortugueseButton = NodePath("VBoxContainer/PTBRButton")
+
+[node name="LanguageLabel" type="Label" parent="VBoxContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ENButton" type="Button" parent="VBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PTBRButton" type="Button" parent="VBoxContainer" index="3"]
+layout_mode = 2
+size_flags_horizontal = 4

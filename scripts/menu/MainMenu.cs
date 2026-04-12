@@ -5,59 +5,103 @@ using System.IO;
 public partial class MainMenu : CanvasLayer
 {
 
-	[Export] private VBoxContainer buttonContainer;
+	[Export] private string PlayScene = "res://scenes/test/world_test.tscn";
+	[Export] private AnimationPlayer AnimationPlayer;
+	[Export] private Control Cursor;
 	[Export] private Control Settings;
 	
 	[ExportGroup("Main Menu Buttons")]
-	[Export] private Button playButton;
-	[Export] private Button optionsButton;
-	[Export] private Button quitButton;
+	[Export] private Button PlayButton;
+	[Export] private Button SettingsButton;
+	[Export] private Button QuitButton;
 	
 	[ExportGroup("Settings Buttons")]
-	[Export] private Button settingsBackButton;
+	[Export] private Button SettingsBackButton;
+	[Export] private Button SettingsControlsButton;
+	[Export] private Button SettingsAudioButton;
+	[Export] private Button SettingsLanguageButton;
 
-	[Export] private string playScene = "res://scenes/test/world_test.tscn";
+	[ExportGroup("Settings Options")]
+	[Export] private SettingsMenu ControlsMenu;
+	[Export] private SettingsMenu AudioMenu;
+	[Export] private SettingsMenu LanguageMenu;
 
 	public override void _Ready() 
 	{
-		DisableSettings();
-		playButton.Text = "Start";
-		optionsButton.Text = "Settings";
-		quitButton.Text = "Quit";
+		Input.MouseMode = Input.MouseModeEnum.Hidden;
+
+		RefreshUI();
+
+		GD.Print("Locale: " + TranslationServer.GetLocale());
+		GD.Print("MENU_PLAY: " + Tr("MENU_PLAY"));
+		GD.Print("Loaded locales: ");
+		foreach (var locale in TranslationServer.GetLoadedLocales())
+			GD.Print(locale);
+
+		DisableControl(Settings);
+		DisableControl(ControlsMenu);
+		DisableControl(AudioMenu);
+		DisableControl(LanguageMenu);
 
 		// Conectar os sinais
-		playButton.Pressed += _on_play_button_button_pressed;
-		optionsButton.Pressed += _on_settings_button_button_pressed;
-		quitButton.Pressed += _on_quit_button_button_pressed;
-		settingsBackButton.Pressed += _on_settings_back_button_pressed;
+		AnimationPlayer.AnimationFinished += _on_animation_finished;
+		PlayButton.Pressed += () => GetTree().ChangeSceneToFile(PlayScene);
+		SettingsButton.Pressed += () => { if (Settings.Visible == false) { AnimationPlayer.Play("Settings");} };
+		QuitButton.Pressed += () => GetTree().Quit();
+		SettingsBackButton.Pressed += () => AnimationPlayer.Play("SettingsBack");
+		SettingsControlsButton.Pressed += () => AnimationPlayer.Play("ControlsMenu");
+		SettingsAudioButton.Pressed += () => AnimationPlayer.Play("AudioMenu");
+		SettingsLanguageButton.Pressed += () => AnimationPlayer.Play("LanguageMenu");
+		ControlsMenu.Back += () => AnimationPlayer.Play("ControlsMenuBack");
+		AudioMenu.Back += () => AnimationPlayer.Play("AudioMenuBack");
+		LanguageMenu.Back += () => AnimationPlayer.Play("LanguageMenuBack");
 	}
 
-	private void _on_play_button_button_pressed() 
+	public override void _Process(double delta)
 	{
-		GetTree().ChangeSceneToFile(playScene);
+		Cursor.GlobalPosition = GetViewport().GetMousePosition();
 	}
 
-	private void _on_settings_button_button_pressed() 
+	private void _on_animation_finished(StringName animName)
 	{
-		Settings.Visible = true;
-		Settings.ProcessMode = ProcessModeEnum.Inherit;
-		Settings.MouseFilter = Control.MouseFilterEnum.Stop;
+		if (animName == "Settings")
+			EnableControl(Settings);
+		else if (animName == "SettingsBack")
+			DisableControl(Settings);
+		else if (animName == "ControlsMenu")
+			EnableControl(ControlsMenu);
+		else if (animName == "ControlsMenuBack")
+			DisableControl(ControlsMenu);
+		else if (animName == "AudioMenu")
+			EnableControl(AudioMenu);
+		else if (animName == "AudioMenuBack")
+			DisableControl(AudioMenu);
+		else if (animName == "LanguageMenu")
+			EnableControl(LanguageMenu);
+		else if (animName == "LanguageMenuBack")
+			DisableControl(LanguageMenu);
 	}
 
-	private void _on_quit_button_button_pressed() 
+	private void EnableControl(Control control)
 	{
-		GetTree().Quit();
+		control.Visible = true;
+		control.ProcessMode = ProcessModeEnum.Inherit;
+		control.MouseFilter = Control.MouseFilterEnum.Stop;
+	}
+	private void DisableControl(Control control)
+	{
+		control.Visible = false;
+		control.ProcessMode = ProcessModeEnum.Disabled;
+		control.MouseFilter = Control.MouseFilterEnum.Ignore;
 	}
 
-	private void _on_settings_back_button_pressed() 
+	private void RefreshUI()
 	{
-		DisableSettings();
-	}
-
-	private void DisableSettings() 
-	{
-		Settings.Visible = false;
-		Settings.ProcessMode = ProcessModeEnum.Disabled;
-		Settings.MouseFilter = Control.MouseFilterEnum.Ignore;
+		PlayButton.Text = Tr("MENU_PLAY");
+		SettingsButton.Text = Tr("MENU_SETTINGS");
+		QuitButton.Text = Tr("MENU_QUIT");
+		SettingsControlsButton.Text = Tr("MENU_CONTROLS");
+		SettingsAudioButton.Text = Tr("MENU_AUDIO");
+		SettingsLanguageButton.Text = Tr("MENU_LANGUAGE");
 	}
 }
