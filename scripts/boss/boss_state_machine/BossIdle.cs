@@ -3,9 +3,10 @@ using System;
 
 public partial class BossIdle : BState
 {
-	[Export] Timer ChooseStateTimer;
+	[Export] protected Timer ChooseStateTimer;
 	public override void Enter()
 	{
+		Boss.FacePlayer();
 		//cria o timer toda vez que entra no estado idle
 		if (ChooseStateTimer != null)
 		{
@@ -26,6 +27,7 @@ public partial class BossIdle : BState
 		vel.Y = 0;
 		Boss.Velocity = vel;
 		Boss.MoveAndSlide();
+		Boss.FacePlayer();
 	}
 	public override void Exit()
 	{
@@ -42,9 +44,10 @@ public partial class BossIdle : BState
 		DecideState();
 	}
 
-	//função de escolher o estado (por enquanto abstract mas provavelmente será virtual+implementada aqui)
+	//função de escolher o estado (por enquanto abstract mas provavelmente será virtual + implementada aqui)
 	protected void DecideState()
 	{
-	
+		//implementação urgente!!!!!!!
+
 	}
 }

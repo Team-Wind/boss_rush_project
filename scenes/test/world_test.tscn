@@ -2,38 +2,40 @@
 
 [ext_resource type="PackedScene" uid="uid://c72jvxinlcxtf" path="res://scenes/test/player_test.tscn" id="1_l7drr"]
 [ext_resource type="Script" uid="uid://b3qnidat1w6ad" path="res://scripts/world_test/WorldTest.cs" id="1_p7hi7"]
-[ext_resource type="PackedScene" uid="uid://bxb0yknsv3xqs" path="res://scenes/test/boss_test.tscn" id="4_mulqk"]
+[ext_resource type="PackedScene" uid="uid://caet384aovsb1" path="res://scenes/boss1/boss1.tscn" id="4_7trgr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7j08u"]
-size = Vector2(1152, 246)
+size = Vector2(1152, 176)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y0e01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p7hi7"]
-size = Vector2(15, 438)
+size = Vector2(16, 546)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mulqk"]
-size = Vector2(52, 425)
+size = Vector2(52, 545)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7trgr"]
 size = Vector2(1155, 20)
 
-[node name="WorldTest" type="Node2D" node_paths=PackedStringArray("Player", "HPLabel")]
+[node name="WorldTest" type="Node2D" node_paths=PackedStringArray("Player", "Boss1", "HPLabel", "BossLabel")]
 script = ExtResource("1_p7hi7")
 Player = NodePath("Player")
+Boss1 = NodePath("Boss1")
 HPLabel = NodePath("PlayerHUD")
+BossLabel = NodePath("BossHUD")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 525)
+position = Vector2(576, 616)
 shape = SubResource("RectangleShape2D_7j08u")
 debug_color = Color(0.87261814, 0.34372988, 0.14710727, 0.41960785)
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-offset_top = 399.0
+offset_top = 528.0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 777.0
 color = Color(0.25421286, 0.054277144, 0.0042437604, 1)
 metadata/_edit_use_anchors_ = true
 
@@ -47,16 +49,24 @@ offset_bottom = 110.0
 label_settings = SubResource("LabelSettings_y0e01")
 metadata/_edit_use_anchors_ = true
 
+[node name="BossHUD" type="Label" parent="."]
+offset_left = 472.0
+offset_top = 16.0
+offset_right = 680.0
+offset_bottom = 104.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-8.5, 209)
+position = Vector2(-8, 263)
 shape = SubResource("RectangleShape2D_p7hi7")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(1180, 211.5)
+position = Vector2(1180, 271.5)
 shape = SubResource("RectangleShape2D_mulqk")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
@@ -65,15 +75,6 @@ shape = SubResource("RectangleShape2D_mulqk")
 position = Vector2(576, -16)
 shape = SubResource("RectangleShape2D_7trgr")
 
-[node name="BossTest" parent="." node_paths=PackedStringArray("PlayerRef") instance=ExtResource("4_mulqk")]
-position = Vector2(768, 336)
-scale = Vector2(1.5, 1.5)
+[node name="Boss1" parent="." node_paths=PackedStringArray("PlayerRef") instance=ExtResource("4_7trgr")]
+position = Vector2(752, 480)
 PlayerRef = NodePath("../Player")
-
-[node name="BossHUD" type="Label" parent="."]
-offset_left = 472.0
-offset_top = 8.0
-offset_right = 680.0
-offset_bottom = 96.0
-horizontal_alignment = 1
-vertical_alignment = 1

@@ -5,6 +5,7 @@ public abstract partial class BState : Node
 {
 	public BStateMachine BStateMachine;
 	[Export] public Boss Boss;
+	
 
 	public abstract void Enter();
 	public abstract void PhysicsUpdate(double delta);

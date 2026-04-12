@@ -6,10 +6,12 @@ public partial class Boss1 : Boss
     public override void _Ready()
     {
         base._Ready();
+        CurrentHealth = MaxHealth;
     }
 
     public override void InitializeBoss()
     {
+        CurrentHealth = MaxHealth;
     }
 
     protected override void TakeDamage(int amount)

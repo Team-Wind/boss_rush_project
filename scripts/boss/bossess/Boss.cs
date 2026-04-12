@@ -5,12 +5,15 @@ public abstract partial class Boss : CharacterBody2D
 {
 	[Export] public Player PlayerRef;
 	[Export] public Area2D ContactHitbox;
+	[Export] public Sprite2D Sprite2D;
 	[Export] public AnimationPlayer AnimationPlayer;
 	[Export] public BStateMachine BFSM;
 	[Export] public int MaxHealth = 100;
-	[Export] protected Sprite2D Sprite2D;
+	[Export] protected AnimatedSprite2D AnimSprite2D;
 	[Export] public int DamageAmount = 1;
-	protected int CurrentHealth;
+	[Export] public int StaggerCounter;
+	public float DistanceToPlayer;
+	public int CurrentHealth;
     protected bool IsDead = false;
 	protected Vector2 Direction;
 
@@ -51,7 +54,7 @@ public abstract partial class Boss : CharacterBody2D
 
 		Direction = PlayerRef.GlobalPosition - GlobalPosition;
 
-		if (Direction.X < 0)
+		if (Direction.X > 0)
 		{
 			Sprite2D.FlipH = true;
 		}

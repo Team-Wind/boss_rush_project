@@ -38,7 +38,14 @@ public partial class Player : CharacterBody2D
 		//random
 		public int FacingDirection = 1;
 		public bool IsDead = false;
-		
+
+
+    public override void _Ready()
+    {
+        CurrentHP = HitPoints;
+    }
+
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (WasOnFloor && !IsOnFloor())
