@@ -7,6 +7,7 @@ public partial class Boss1 : Boss
     {
         base._Ready();
         CurrentHealth = MaxHealth;
+        
     }
 
     public override void InitializeBoss()
@@ -14,9 +15,9 @@ public partial class Boss1 : Boss
         CurrentHealth = MaxHealth;
     }
 
-    protected override void TakeDamage(int amount)
+    public override void TakeDamage(int amount, int StaggerAmount)
     {
-        base.TakeDamage(amount);
+        base.TakeDamage(amount,StaggerAmount);
     }
 
     public override void FacePlayer()

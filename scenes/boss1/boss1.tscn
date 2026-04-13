@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ch0q47a6fn705" path="res://scripts/boss/bossess/boss1/boss1_actions/Boss1ThrowAxe.cs" id="5_nt1nc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3mj3"]
-size = Vector2(37, 76)
+size = Vector2(62, 85)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ux2ok"]
 size = Vector2(64, 84.5)
@@ -22,14 +22,13 @@ ContactHitbox = NodePath("Area2D")
 Sprite2D = NodePath("debug_sprite")
 BFSM = NodePath("BStateMachine")
 StaggerCounter = 15
-MeeleeRange = 30.0
 
 [node name="debug_sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.24999997, 0.25000006)
 texture = ExtResource("2_nt1nc")
 
 [node name="CollisionHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_f3mj3")
 
 [node name="Area2D" type="Area2D" parent="."]

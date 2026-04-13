@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://c72jvxinlcxtf"]
+[gd_scene load_steps=19 format=3 uid="uid://c72jvxinlcxtf"]
 
 [ext_resource type="Script" uid="uid://xwcjf0mlfe4x" path="res://scripts/player/Player.cs" id="1_h8cp6"]
-[ext_resource type="Texture2D" uid="uid://rmq1cc0ygp5i" path="res://assets/sprites/player_test/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png" id="2_fp4r3"]
+[ext_resource type="Texture2D" uid="uid://cdf5ykrrcg7le" path="res://assets/sprites/player_test/spr_test.png" id="2_la7tc"]
 [ext_resource type="Script" uid="uid://dns15axn0vi8i" path="res://scripts/player/player_actions/DashState.cs" id="2_mb4fa"]
 [ext_resource type="Script" uid="uid://e77hudvoo7cc" path="res://scripts/player/player_actions/FallState.cs" id="3_fp4r3"]
 [ext_resource type="Script" uid="uid://k34bhspxt130" path="res://scripts/player/player_state_machine/StateMachine.cs" id="3_teb4e"]
+[ext_resource type="Script" uid="uid://xbcf4utrnoir" path="res://scripts/player/player_actions/AttackState.cs" id="4_otd1v"]
 [ext_resource type="Script" uid="uid://bbg0gh2x2dmnc" path="res://scripts/player/player_actions/IdleState.cs" id="4_teb4e"]
 [ext_resource type="Script" uid="uid://cs1p6nf08bget" path="res://scripts/player/player_actions/JumpState.cs" id="5_la7tc"]
 [ext_resource type="Script" uid="uid://bev51rs8nebef" path="res://scripts/player/player_actions/WalkState.cs" id="6_otd1v"]
@@ -12,6 +13,68 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8cp6"]
 size = Vector2(21, 63)
+
+[sub_resource type="Animation" id="Animation_ex5qa"]
+resource_name = "AttackTest"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_la7tc"), ExtResource("2_la7tc"), ExtResource("2_la7tc"), ExtResource("2_la7tc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/SwordCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_j3xeg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_la7tc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/SwordCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqynm"]
+_data = {
+&"AttackTest": SubResource("Animation_ex5qa"),
+&"RESET": SubResource("Animation_j3xeg")
+}
 
 [sub_resource type="Animation" id="Animation_la7tc"]
 resource_name = "HurtBlink"
@@ -52,10 +115,16 @@ _data = {
 &"RESET": SubResource("Animation_otd1v")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Effects", "IframeDuration", "Hitbox")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la7tc"]
+size = Vector2(33, 56)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Effects", "Animations", "IframeDuration", "Sprite", "SwordCollider", "Hitbox")]
 script = ExtResource("1_h8cp6")
 Effects = NodePath("Effects")
+Animations = NodePath("AnimationPlayer")
 IframeDuration = NodePath("HurtTimer")
+Sprite = NodePath("Sprite2D")
+SwordCollider = NodePath("Sword/SwordCollider")
 Hitbox = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,20 +133,35 @@ shape = SubResource("RectangleShape2D_h8cp6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
-scale = Vector2(0.2, 0.1777778)
-texture = ExtResource("2_fp4r3")
+position = Vector2(1.500001, -1.4555554)
+scale = Vector2(0.06054688, 0.12712674)
+texture = ExtResource("2_la7tc")
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D"]
-offset_left = -100.0
-offset_top = -219.37498
-offset_right = 95.0
-offset_bottom = 219.37498
+anchors_preset = -1
+anchor_left = -0.33694553
+anchor_top = -0.16371486
+anchor_right = 0.15316272
+offset_left = -66.96774
+offset_top = -172.178
+offset_right = 128.03226
+offset_bottom = 266.57196
 color = Color(0.3372549, 0.105882354, 0.12156863, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uqynm")
+}
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("InitialState", "StateLabel")]
 script = ExtResource("3_teb4e")
 InitialState = NodePath("IdleState")
 StateLabel = NodePath("../PlayerDebug")
+
+[node name="AttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player")]
+script = ExtResource("4_otd1v")
+Player = NodePath("../..")
 
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("Player")]
 script = ExtResource("2_mb4fa")
@@ -109,11 +193,20 @@ offset_top = -51.0
 offset_right = 26.0
 offset_bottom = -28.0
 
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_otd1v")
 }
 
-[node name="HurtTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
+[node name="Sword" type="Area2D" parent="."]
+
+[node name="SwordCollider" type="CollisionShape2D" parent="Sword"]
+position = Vector2(35.5, 0)
+shape = SubResource("RectangleShape2D_la7tc")
+debug_color = Color(0, 0.6784314, 0.19607843, 0.56078434)
+
+[connection signal="body_entered" from="Sword" to="." method="DealDamage"]

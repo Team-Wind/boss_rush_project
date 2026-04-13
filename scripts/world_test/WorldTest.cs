@@ -12,7 +12,7 @@ public partial class WorldTest : Node2D
 	public override void _Ready()
 	{
 		if (HPLabel != null) HPLabel.Text = "HP: " + Player.CurrentHP;
-		if (BossLabel != null) BossLabel.Text = "Boss HP: " + Boss1.CurrentHealth;
+		if (BossLabel != null) BossLabel.Text = "Boss HP: " + Boss1.CurrentHealth + "/ Boss Stagger: " + Boss1.CurrentStaggerCounter;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

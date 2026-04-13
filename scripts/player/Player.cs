@@ -6,9 +6,13 @@ using System.Text;
 
 public partial class Player : CharacterBody2D
 {
-	[Export] private AnimatedSprite2D Animation;
+	//[Export] private AnimatedSprite2D Animation;
+	[Export] public Boss BossRef;
 	[Export] private AnimationPlayer Effects;
+	[Export] private AnimationPlayer Animations;
 	[Export] private Timer IframeDuration;
+	[Export] private Sprite2D Sprite;
+	[Export] public CollisionShape2D SwordCollider;
 	[Export] public CollisionShape2D Hitbox;
 	//esse sinal serve para indicar que o player levou dano
 	[Signal] public delegate void HitEventHandler(Vector2 sourcePosition);
@@ -18,9 +22,8 @@ public partial class Player : CharacterBody2D
 	//[Export] public AudioStreamPlayer SfxDash;
 	//[Export] public AudioStreamPlayer SfxJump;
 	//========================================
-
 	
-	//variaveis do jogador
+	//variáveis do jogador
 		//movimentação
 		public bool CanDoubleJump = false;
 		public bool WasOnFloor = true;
@@ -29,13 +32,13 @@ public partial class Player : CharacterBody2D
 		public float DashTimer = 0.0f;
 
 		//status
-		public int HitPoints = 10;
+		[Export] public int HitPoints = 10;
 		public int CurrentHP;
-		public bool IsKnocked = false;
+		[Export] public int AttackDamage = 5;
+		[Export] public int StaggerAmount = 1;
+ 		public bool IsKnocked = false;
 		public bool IsInvulnerable = false;
-		
-
-		//random
+		public bool IsAttacking = false;
 		public int FacingDirection = 1;
 		public bool IsDead = false;
 
@@ -43,6 +46,7 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         CurrentHP = HitPoints;
+		SwordCollider.Disabled = true;
     }
 
 
@@ -55,7 +59,7 @@ public partial class Player : CharacterBody2D
 
 		WasOnFloor = IsOnFloor();
 
-		//FlipPlayer();
+		FlipPlayer();
 
 		if (Velocity.X != 0) { FacingDirection = Math.Sign(Velocity.X); }
 			
@@ -63,11 +67,18 @@ public partial class Player : CharacterBody2D
 
 	}
 
-	public void AnimationPlayer(StringName name)
+	public void SetAnimation(StringName name)
 	{
-		if(Animation.Animation == name)
-			return;
-		Animation.Play(name);
+		Animations.Play(name);
+	}
+
+	public virtual void SwordOnBodyEntered(Node2D body)
+	{
+		if (body is Boss BossRef)
+		{
+			BossRef.TakeDamage(AttackDamage, StaggerAmount);
+		}
+		
 	}
 
 	public async void TakeDamage(int amount, Vector2 sourcePosition)
@@ -111,8 +122,9 @@ public partial class Player : CharacterBody2D
 		Engine.TimeScale = 1.0;
 	}
 
-	//private void FlipPlayer()
-	//{
-	//	if (Velocity.X !=0){ Animation.FlipH = Velocity.X < 0; }
-	//}
+	public void FlipPlayer()
+	{
+		if (Velocity.X <= 0) Sprite.FlipH = false;
+		else Sprite.FlipH = true;
+	}
 }
