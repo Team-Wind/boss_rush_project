@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D
 	[Export] private AnimationPlayer Animations;
 	[Export] private Timer IframeDuration;
 	[Export] private Sprite2D Sprite;
+	[Export] public Area2D SwordArea;
 	[Export] public CollisionShape2D SwordCollider;
 	[Export] public CollisionShape2D Hitbox;
 	//esse sinal serve para indicar que o player levou dano
@@ -30,7 +31,6 @@ public partial class Player : CharacterBody2D
 		public bool Dashing = false;
 		public float DashCooldown = 0.5f;
 		public float DashTimer = 0.0f;
-
 		//status
 		[Export] public int HitPoints = 10;
 		public int CurrentHP;
@@ -42,11 +42,15 @@ public partial class Player : CharacterBody2D
 		public int FacingDirection = 1;
 		public bool IsDead = false;
 
+		public bool bisInArea = false;
+
 
     public override void _Ready()
     {
         CurrentHP = HitPoints;
 		SwordCollider.Disabled = true;
+		SwordArea.Monitoring = true;
+		SwordArea.BodyEntered += SwordOnBodyEntered;
     }
 
 
@@ -72,13 +76,15 @@ public partial class Player : CharacterBody2D
 		Animations.Play(name);
 	}
 
-	public virtual void SwordOnBodyEntered(Node2D body)
+	public virtual void SwordOnBodyEntered(Node body)
 	{
+		GD.Print("Entrou algo: ", body.Name);
+
 		if (body is Boss BossRef)
 		{
 			BossRef.TakeDamage(AttackDamage, StaggerAmount);
+			GD.Print("DEU DANO");
 		}
-		
 	}
 
 	public async void TakeDamage(int amount, Vector2 sourcePosition)

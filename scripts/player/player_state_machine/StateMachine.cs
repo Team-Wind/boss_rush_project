@@ -106,6 +106,8 @@ public partial class StateMachine : Node
 		if (CurrentState != null)
 		{
 			CurrentState.Enter();
+			//coloquei isso, pq o debug, quando entrava em attack, sumia mt rapido
+			GD.Print($"Trocando de Estado :  {NewStateName}");
 		}
 	}
 

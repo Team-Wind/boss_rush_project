@@ -10,11 +10,12 @@ public partial class AttackState : State
 	{
 		Player.SetAnimation("AttackTest");
 
+		Player.SwordCollider.Disabled = false;
+
 		Player.IsAttacking = true;
 
 		//if(Player.SwordCollider)
-		Player.SwordOnBodyEntered(Player.BossRef);
-
+		//Quando ele entra ele bate no boss
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,9 +52,12 @@ public partial class AttackState : State
 		
 	}
 
+
+
     public override void Exit()
 	{
 		Player.IsAttacking = false;
+		Player.SwordCollider.Disabled = true;
 	}
 
 }

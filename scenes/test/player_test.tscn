@@ -118,12 +118,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la7tc"]
 size = Vector2(33, 56)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Effects", "Animations", "IframeDuration", "Sprite", "SwordCollider", "Hitbox")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Effects", "Animations", "IframeDuration", "Sprite", "SwordArea", "SwordCollider", "Hitbox")]
 script = ExtResource("1_h8cp6")
 Effects = NodePath("Effects")
 Animations = NodePath("AnimationPlayer")
 IframeDuration = NodePath("HurtTimer")
 Sprite = NodePath("Sprite2D")
+SwordArea = NodePath("Sword")
 SwordCollider = NodePath("Sword/SwordCollider")
 Hitbox = NodePath("CollisionShape2D")
 
@@ -207,6 +208,6 @@ libraries = {
 [node name="SwordCollider" type="CollisionShape2D" parent="Sword"]
 position = Vector2(35.5, 0)
 shape = SubResource("RectangleShape2D_la7tc")
-debug_color = Color(0, 0.6784314, 0.19607843, 0.56078434)
+debug_color = Color(5.7756904e-07, 0.6461878, 0.2502308, 0.41960785)
 
 [connection signal="body_entered" from="Sword" to="." method="DealDamage"]
