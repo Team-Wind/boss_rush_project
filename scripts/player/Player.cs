@@ -15,6 +15,7 @@ public partial class Player : CharacterBody2D
 	[Export] public Area2D SwordArea;
 	[Export] public CollisionShape2D SwordCollider;
 	[Export] public CollisionShape2D Hitbox;
+	
 	//esse sinal serve para indicar que o player levou dano
 	[Signal] public delegate void HitEventHandler(Vector2 sourcePosition);
 	
@@ -29,6 +30,7 @@ public partial class Player : CharacterBody2D
 		public bool CanDoubleJump = false;
 		public bool WasOnFloor = true;
 		public bool Dashing = false;
+		bool lastSprit = false; //armazena a ultima sprite
 		public float DashCooldown = 0.5f;
 		public float DashTimer = 0.0f;
 		//status
@@ -130,7 +132,20 @@ public partial class Player : CharacterBody2D
 
 	public void FlipPlayer()
 	{
-		if (Velocity.X <= 0) Sprite.FlipH = false;
-		else Sprite.FlipH = true;
+		if (Velocity.X < 0)
+		{
+			SwordCollider.Position = new Vector2(-39,0);
+			lastSprit = false;
+			Sprite.FlipH = lastSprit;
+		}
+		else if(Velocity.X == 0)
+			Sprite.FlipH = lastSprit;
+		else 
+		{
+			SwordCollider.Position = new Vector2(39,0);
+			lastSprit = true;
+			Sprite.FlipH = lastSprit;
+		}
+
 	}
 }
