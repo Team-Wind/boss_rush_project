@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rmq1cc0ygp5i"
-path="res://.godot/imported/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png-20df62ec98e5a5f9922ddb9357e7eb0c.ctex"
+uid="uid://cd41x1l6oro36"
+path="res://.godot/imported/idle.png-fb1089fc3f83837c5d31af175fa64795.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_test/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png"
-dest_files=["res://.godot/imported/pngtree-young-man-character-design-for-2d-animation-vector-png-image_7101662.png-20df62ec98e5a5f9922ddb9357e7eb0c.ctex"]
+source_file="res://assets/sprites/Undead executioner/Undead executioner puppet/png/idle.png"
+dest_files=["res://.godot/imported/idle.png-fb1089fc3f83837c5d31af175fa64795.ctex"]
 
 [params]
 

@@ -59,6 +59,10 @@ public partial class FallState : State
 			StateMachine.ChangeState("DashState");			
 		}
       
+	  	if (Input.IsActionJustPressed("Attack"))
+        {
+            StateMachine.ChangeState("AttackState");
+        }
     }
 
     public override void Exit(){}

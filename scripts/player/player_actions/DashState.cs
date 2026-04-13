@@ -20,28 +20,22 @@ public partial class DashState : State
         else
             DashDirection = Player.FacingDirection != 0 ? Player.FacingDirection : 1;
 
-        DashStartingPosition  = Player
-        .GlobalPosition.X;
+        DashStartingPosition  = Player.GlobalPosition.X;
         CurrentDistance = 0.0f;
         Player.Dashing = true;
         
-        Player
-        .Velocity = new Vector2(DashDirection * DashSpeed, 0);
+        Player.Velocity = new Vector2(DashDirection * DashSpeed, 0);
         Player.DashTimer = DashCooldown;
     }
 
 	public override void PhysicsUpdate(double delta)
     {
-        Player
-        .Velocity = new Vector2(DashDirection * DashSpeed, 0);
-        Player
-        .MoveAndSlide();
+        Player.Velocity = new Vector2(DashDirection * DashSpeed, 0);
+        Player.MoveAndSlide();
 
-        CurrentDistance = Math.Abs(Player
-        .GlobalPosition.X - DashStartingPosition );
+        CurrentDistance = Math.Abs(Player.GlobalPosition.X - DashStartingPosition );
 
-        if (CurrentDistance >= DashDistance || Player
-        .IsOnWall())
+        if (CurrentDistance >= DashDistance || Player.IsOnWall())
         {
             Player.Dashing = false;
             StateMachine.ChangeState("FallState");
@@ -60,5 +54,11 @@ public partial class DashState : State
 			Player.CanDoubleJump = false;
 			StateMachine.ChangeState("JumpState");
 		}
+
+        if (Input.IsActionJustPressed("Attack"))
+        {
+            StateMachine.ChangeState("AttackState");
+        }
+
     }
 }

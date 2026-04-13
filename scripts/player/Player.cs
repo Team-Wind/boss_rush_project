@@ -6,10 +6,16 @@ using System.Text;
 
 public partial class Player : CharacterBody2D
 {
-	[Export] private AnimatedSprite2D Animation;
+	//[Export] private AnimatedSprite2D Animation;
+	[Export] public Boss BossRef;
 	[Export] private AnimationPlayer Effects;
+	[Export] private AnimationPlayer Animations;
 	[Export] private Timer IframeDuration;
+	[Export] private Sprite2D Sprite;
+	[Export] public Area2D SwordArea;
+	[Export] public CollisionShape2D SwordCollider;
 	[Export] public CollisionShape2D Hitbox;
+	
 	//esse sinal serve para indicar que o player levou dano
 	[Signal] public delegate void HitEventHandler(Vector2 sourcePosition);
 	
@@ -18,27 +24,38 @@ public partial class Player : CharacterBody2D
 	//[Export] public AudioStreamPlayer SfxDash;
 	//[Export] public AudioStreamPlayer SfxJump;
 	//========================================
-
 	
-	//variaveis do jogador
+	//variáveis do jogador
 		//movimentação
 		public bool CanDoubleJump = false;
 		public bool WasOnFloor = true;
 		public bool Dashing = false;
+		bool lastSprit = false; //armazena a ultima sprite
 		public float DashCooldown = 0.5f;
 		public float DashTimer = 0.0f;
-
 		//status
-		public int HitPoints = 10;
+		[Export] public int HitPoints = 10;
 		public int CurrentHP;
-		public bool IsKnocked = false;
+		[Export] public int AttackDamage = 5;
+		[Export] public int StaggerAmount = 1;
+ 		public bool IsKnocked = false;
 		public bool IsInvulnerable = false;
-		
-
-		//random
+		public bool IsAttacking = false;
 		public int FacingDirection = 1;
 		public bool IsDead = false;
-		
+
+		public bool bisInArea = false;
+
+
+    public override void _Ready()
+    {
+        CurrentHP = HitPoints;
+		SwordCollider.Disabled = true;
+		SwordArea.Monitoring = true;
+		SwordArea.BodyEntered += SwordOnBodyEntered;
+    }
+
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (WasOnFloor && !IsOnFloor())
@@ -48,7 +65,7 @@ public partial class Player : CharacterBody2D
 
 		WasOnFloor = IsOnFloor();
 
-		//FlipPlayer();
+		FlipPlayer();
 
 		if (Velocity.X != 0) { FacingDirection = Math.Sign(Velocity.X); }
 			
@@ -56,11 +73,20 @@ public partial class Player : CharacterBody2D
 
 	}
 
-	public void AnimationPlayer(StringName name)
+	public void SetAnimation(StringName name)
 	{
-		if(Animation.Animation == name)
-			return;
-		Animation.Play(name);
+		Animations.Play(name);
+	}
+
+	public virtual void SwordOnBodyEntered(Node body)
+	{
+		GD.Print("Entrou algo: ", body.Name);
+
+		if (body is Boss BossRef)
+		{
+			BossRef.TakeDamage(AttackDamage, StaggerAmount);
+			GD.Print("DEU DANO");
+		}
 	}
 
 	public async void TakeDamage(int amount, Vector2 sourcePosition)
@@ -104,8 +130,22 @@ public partial class Player : CharacterBody2D
 		Engine.TimeScale = 1.0;
 	}
 
-	//private void FlipPlayer()
-	//{
-	//	if (Velocity.X !=0){ Animation.FlipH = Velocity.X < 0; }
-	//}
+	public void FlipPlayer()
+	{
+		if (Velocity.X < 0)
+		{
+			SwordCollider.Position = new Vector2(-39,0);
+			lastSprit = false;
+			Sprite.FlipH = lastSprit;
+		}
+		else if(Velocity.X == 0)
+			Sprite.FlipH = lastSprit;
+		else 
+		{
+			SwordCollider.Position = new Vector2(39,0);
+			lastSprit = true;
+			Sprite.FlipH = lastSprit;
+		}
+
+	}
 }
