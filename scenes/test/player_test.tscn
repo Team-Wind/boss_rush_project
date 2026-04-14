@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://c72jvxinlcxtf"]
 
 [ext_resource type="Script" uid="uid://xwcjf0mlfe4x" path="res://scripts/player/Player.cs" id="1_h8cp6"]
-[ext_resource type="Texture2D" uid="uid://cdf5ykrrcg7le" path="res://assets/sprites/player_test/spr_test.png" id="2_la7tc"]
 [ext_resource type="Script" uid="uid://dns15axn0vi8i" path="res://scripts/player/player_actions/DashState.cs" id="2_mb4fa"]
+[ext_resource type="Texture2D" uid="uid://bbj320sqjv85k" path="res://assets/sprites/player/IDLEE/quadro0000.png" id="2_otd1v"]
 [ext_resource type="Script" uid="uid://e77hudvoo7cc" path="res://scripts/player/player_actions/FallState.cs" id="3_fp4r3"]
 [ext_resource type="Script" uid="uid://k34bhspxt130" path="res://scripts/player/player_state_machine/StateMachine.cs" id="3_teb4e"]
 [ext_resource type="Script" uid="uid://xbcf4utrnoir" path="res://scripts/player/player_actions/AttackState.cs" id="4_otd1v"]
@@ -16,64 +16,26 @@ size = Vector2(21, 63)
 
 [sub_resource type="Animation" id="Animation_ex5qa"]
 resource_name = "AttackTest"
-length = 0.4
-step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [ExtResource("2_la7tc"), ExtResource("2_la7tc"), ExtResource("2_la7tc"), ExtResource("2_la7tc")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sword/SwordCollider:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [true, false, false, true]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_j3xeg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_la7tc")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sword/SwordCollider:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+resource_name = "Idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqynm"]
 _data = {
 &"AttackTest": SubResource("Animation_ex5qa"),
-&"RESET": SubResource("Animation_j3xeg")
+&"Idle": SubResource("Animation_j3xeg")
 }
 
 [sub_resource type="Animation" id="Animation_la7tc"]
@@ -134,19 +96,19 @@ shape = SubResource("RectangleShape2D_h8cp6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
-position = Vector2(1.500001, -1.4555554)
-scale = Vector2(0.06054688, 0.12712674)
-texture = ExtResource("2_la7tc")
+position = Vector2(-2.861023e-06, -1.1920929e-07)
+scale = Vector2(0.11132811, 0.12712674)
+texture = ExtResource("2_otd1v")
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D"]
 anchors_preset = -1
-anchor_left = -0.33694553
+anchor_left = -0.2492263
 anchor_top = -0.16371486
-anchor_right = 0.15316272
-offset_left = -66.96774
-offset_top = -172.178
-offset_right = 128.03226
-offset_bottom = 266.57196
+anchor_right = -0.10376975
+offset_left = -52.045258
+offset_top = -183.62764
+offset_right = 142.95474
+offset_bottom = 255.12231
 color = Color(0.3372549, 0.105882354, 0.12156863, 0)
 metadata/_edit_use_anchors_ = true
 
