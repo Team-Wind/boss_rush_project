@@ -2,10 +2,12 @@ using Godot;
 
 public partial class AudioMenu : SettingsMenu
 {
+	[ExportGroup("Labels")]
 	[Export] private Label MasterLabel;
 	[Export] private Label MusicLabel;
 	[Export] private Label SFXLabel;
 	
+	[ExportGroup("Sliders")]
 	[Export] private HSlider MasterSlider;
 	[Export] private HSlider MusicSlider;
 	[Export] private HSlider SFXSlider;

@@ -4,13 +4,13 @@ using System;
 
 public partial class ControlsMenu : SettingsMenu
 {
-	
+	[ExportGroup("Labels")]
 	[Export] private Label MoveLeftLabel;
 	[Export] private Label MoveRightLabel;
 	[Export] private Label JumpLabel;
 	[Export] private Label DashLabel;
 	
-	// Cada botão representa uma ação
+	[ExportGroup("Action Buttons")]
 	[Export] private Button MoveLeftButton;
 	[Export] private Button MoveRightButton;
 	[Export] private Button JumpButton;

@@ -15,9 +15,13 @@ MoveRightButton = NodePath("VBoxContainer/Option2/ChangeRightButton")
 JumpButton = NodePath("VBoxContainer/Option3/ChangeJumpButton")
 DashButton = NodePath("VBoxContainer/Option4/ChangeDashButton")
 
+[node name="Background" parent="." index="0"]
+color = Color(0.23791113, 0.33248574, 0.39171863, 1)
+
 [node name="Option1" type="HBoxContainer" parent="VBoxContainer" index="1"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MoveLeft" type="Label" parent="VBoxContainer/Option1" index="0"]
 layout_mode = 2

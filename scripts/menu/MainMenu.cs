@@ -8,10 +8,12 @@ public partial class MainMenu : CanvasLayer
 	[Export] private string PlayScene = "res://scenes/test/world_test.tscn";
 	[Export] private AnimationPlayer AnimationPlayer;
 	[Export] private Control Cursor;
+	[Export] private Control Start;
 	[Export] private Control Settings;
+	[Export] private ColorRect FadeOut;
 	
 	[ExportGroup("Main Menu Buttons")]
-	[Export] private Button PlayButton;
+	[Export] private Button StartButton;
 	[Export] private Button SettingsButton;
 	[Export] private Button QuitButton;
 	
@@ -26,18 +28,20 @@ public partial class MainMenu : CanvasLayer
 	[Export] private SettingsMenu AudioMenu;
 	[Export] private SettingsMenu LanguageMenu;
 
+	[ExportGroup("Start Options")]
+	[Export] private Button StartBackButton;
+	[Export] private Button NewGameButton;
+	[Export] private Button ContinueButton;
+
+	private bool NewGame;
+
 	public override void _Ready() 
 	{
 		Input.MouseMode = Input.MouseModeEnum.Hidden;
-
+		FadeOut.MouseFilter = ColorRect.MouseFilterEnum.Ignore;
 		RefreshUI();
 
-		GD.Print("Locale: " + TranslationServer.GetLocale());
-		GD.Print("MENU_PLAY: " + Tr("MENU_PLAY"));
-		GD.Print("Loaded locales: ");
-		foreach (var locale in TranslationServer.GetLoadedLocales())
-			GD.Print(locale);
-
+		DisableControl(Start);
 		DisableControl(Settings);
 		DisableControl(ControlsMenu);
 		DisableControl(AudioMenu);
@@ -45,7 +49,7 @@ public partial class MainMenu : CanvasLayer
 
 		// Conectar os sinais
 		AnimationPlayer.AnimationFinished += _on_animation_finished;
-		PlayButton.Pressed += () => GetTree().ChangeSceneToFile(PlayScene);
+		StartButton.Pressed += () => { if (Start.Visible == false) { AnimationPlayer.Play("StartMenu");} };
 		SettingsButton.Pressed += () => { if (Settings.Visible == false) { AnimationPlayer.Play("Settings");} };
 		QuitButton.Pressed += () => GetTree().Quit();
 		SettingsBackButton.Pressed += () => AnimationPlayer.Play("SettingsBack");
@@ -55,6 +59,9 @@ public partial class MainMenu : CanvasLayer
 		ControlsMenu.Back += () => AnimationPlayer.Play("ControlsMenuBack");
 		AudioMenu.Back += () => AnimationPlayer.Play("AudioMenuBack");
 		LanguageMenu.Back += () => AnimationPlayer.Play("LanguageMenuBack");
+		StartBackButton.Pressed += () => AnimationPlayer.Play("StartMenuBack");
+		NewGameButton.Pressed += () => {AnimationPlayer.Play("Start"); NewGame = true;};
+		ContinueButton.Pressed += () => {AnimationPlayer.Play("Start"); NewGame = false;};
 	}
 
 	public override void _Process(double delta)
@@ -64,7 +71,9 @@ public partial class MainMenu : CanvasLayer
 
 	private void _on_animation_finished(StringName animName)
 	{
-		if (animName == "Settings")
+		if (animName == "Start")
+			StartGame();
+		else if (animName == "Settings")
 			EnableControl(Settings);
 		else if (animName == "SettingsBack")
 			DisableControl(Settings);
@@ -80,6 +89,21 @@ public partial class MainMenu : CanvasLayer
 			EnableControl(LanguageMenu);
 		else if (animName == "LanguageMenuBack")
 			DisableControl(LanguageMenu);
+		else if (animName == "StartMenu")
+			EnableControl(Start);
+		else if (animName == "StartMenuBack")
+			DisableControl(Start);
+	}
+
+	private void StartGame(){//Demonstração
+		if (NewGame)
+		{
+			GetTree().ChangeSceneToFile(PlayScene);
+		}
+		else
+		{
+			GetTree().ChangeSceneToFile(PlayScene);
+		}
 	}
 
 	private void EnableControl(Control control)
@@ -97,11 +121,13 @@ public partial class MainMenu : CanvasLayer
 
 	private void RefreshUI()
 	{
-		PlayButton.Text = Tr("MENU_PLAY");
+		StartButton.Text = Tr("MENU_START");
 		SettingsButton.Text = Tr("MENU_SETTINGS");
 		QuitButton.Text = Tr("MENU_QUIT");
 		SettingsControlsButton.Text = Tr("MENU_CONTROLS");
 		SettingsAudioButton.Text = Tr("MENU_AUDIO");
 		SettingsLanguageButton.Text = Tr("MENU_LANGUAGE");
+		NewGameButton.Text = Tr("START_NEW_GAME");
+		ContinueButton.Text = Tr("START_CONTINUE");
 	}
 }

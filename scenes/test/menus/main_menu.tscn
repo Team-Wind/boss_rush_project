@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bv26tedd4o8bi"]
+[gd_scene load_steps=21 format=3 uid="uid://bv26tedd4o8bi"]
 
 [ext_resource type="Script" uid="uid://b3ccg2xi3yujl" path="res://scripts/menu/MainMenu.cs" id="1_18iga"]
 [ext_resource type="FontFile" uid="uid://5jggbdunds3f" path="res://assets/font/CozetteVector.ttf" id="2_rg8hm"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="Animation" id="Animation_il38r"]
 resource_name = "AudioMenu"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -19,7 +19,7 @@ tracks/0/path = NodePath("AudioMenu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
@@ -39,7 +39,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_fxch5"]
 resource_name = "AudioMenuBack"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -47,7 +47,7 @@ tracks/0/path = NodePath("AudioMenu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0, 0)]
@@ -55,7 +55,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0alnf"]
 resource_name = "ControlsMenu"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -63,7 +63,7 @@ tracks/0/path = NodePath("ControlsMenu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
@@ -83,7 +83,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_q68xe"]
 resource_name = "ControlsMenuBack"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -91,7 +91,7 @@ tracks/0/path = NodePath("ControlsMenu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.001358e-05, 1.001358e-05)]
@@ -99,7 +99,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vn8eg"]
 resource_name = "LanguageMenu"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -107,7 +107,7 @@ tracks/0/path = NodePath("LanguageMenu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
@@ -127,7 +127,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_4nmjh"]
 resource_name = "LanguageMenuBack"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,7 +135,7 @@ tracks/0/path = NodePath("LanguageMenu:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0, 0)]
@@ -239,10 +239,46 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Start:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Start:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FadeOut:color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_rad1d"]
 resource_name = "Settings"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -250,7 +286,7 @@ tracks/0/path = NodePath("Settings:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
@@ -270,7 +306,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_88q2x"]
 resource_name = "SettingsBack"
-length = 0.5
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -278,10 +314,69 @@ tracks/0/path = NodePath("Settings:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.001358e-05, 1.001358e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_18iga"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOut:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rg8hm"]
+resource_name = "StartMenu"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Start:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4plqj"]
+resource_name = "StartMenuBack"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwquj"]
@@ -294,15 +389,20 @@ _data = {
 &"LanguageMenuBack": SubResource("Animation_4nmjh"),
 &"RESET": SubResource("Animation_23or4"),
 &"Settings": SubResource("Animation_rad1d"),
-&"SettingsBack": SubResource("Animation_88q2x")
+&"SettingsBack": SubResource("Animation_88q2x"),
+&"Start": SubResource("Animation_18iga"),
+&"StartMenu": SubResource("Animation_rg8hm"),
+&"StartMenuBack": SubResource("Animation_4plqj")
 }
 
-[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("AnimationPlayer", "Cursor", "Settings", "PlayButton", "SettingsButton", "QuitButton", "SettingsBackButton", "SettingsControlsButton", "SettingsAudioButton", "SettingsLanguageButton", "ControlsMenu", "AudioMenu", "LanguageMenu") groups=["menus"]]
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("AnimationPlayer", "Cursor", "Start", "Settings", "FadeOut", "StartButton", "SettingsButton", "QuitButton", "SettingsBackButton", "SettingsControlsButton", "SettingsAudioButton", "SettingsLanguageButton", "ControlsMenu", "AudioMenu", "LanguageMenu", "StartBackButton", "NewGameButton", "ContinueButton") groups=["menus"]]
 script = ExtResource("1_18iga")
 AnimationPlayer = NodePath("AnimationPlayer")
 Cursor = NodePath("Cursor")
+Start = NodePath("Start")
 Settings = NodePath("Settings")
-PlayButton = NodePath("Main/VBoxContainer/PlayButton")
+FadeOut = NodePath("FadeOut")
+StartButton = NodePath("Main/VBoxContainer/StartButton")
 SettingsButton = NodePath("Main/VBoxContainer/SettingsButton")
 QuitButton = NodePath("Main/VBoxContainer/QuitButton")
 SettingsBackButton = NodePath("Settings/Options/SettingsBackButton")
@@ -312,6 +412,9 @@ SettingsLanguageButton = NodePath("Settings/Options/HBoxContainer/LanguageButton
 ControlsMenu = NodePath("ControlsMenu")
 AudioMenu = NodePath("AudioMenu")
 LanguageMenu = NodePath("LanguageMenu")
+StartBackButton = NodePath("Start/Options/StartBackButton")
+NewGameButton = NodePath("Start/Options/HBoxContainer/NewGameButton")
+ContinueButton = NodePath("Start/Options/HBoxContainer/ContinueButton")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -319,7 +422,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.25490198, 0.32156864, 1)
+color = Color(0.23921569, 0.33333334, 0.39215687, 1)
 
 [node name="Main" type="Control" parent="."]
 layout_mode = 3
@@ -332,26 +435,90 @@ layout_mode = 0
 offset_right = 400.0
 offset_bottom = 400.0
 
-[node name="PlayButton" type="Button" parent="Main/VBoxContainer"]
-modulate = Color(0, 0.37254903, 0.4862745, 1)
+[node name="StartButton" type="Button" parent="Main/VBoxContainer"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_rg8hm")
 theme_override_font_sizes/font_size = 24
 
 [node name="SettingsButton" type="Button" parent="Main/VBoxContainer"]
-modulate = Color(0, 0.37254903, 0.4862745, 1)
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_rg8hm")
 theme_override_font_sizes/font_size = 24
 
 [node name="QuitButton" type="Button" parent="Main/VBoxContainer"]
-modulate = Color(0, 0.37254903, 0.4862745, 1)
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_rg8hm")
 theme_override_font_sizes/font_size = 24
+
+[node name="Start" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.347
+anchor_top = 0.108
+anchor_right = 0.347
+anchor_bottom = 0.108
+offset_left = 0.25598145
+offset_top = 0.01599884
+offset_right = 40.25598
+offset_bottom = 40.016
+
+[node name="Panel" type="Panel" parent="Start"]
+modulate = Color(0, 0.25490198, 0.32156864, 1)
+layout_mode = 0
+offset_left = 101.0
+offset_top = -21.0
+offset_right = 701.0
+offset_bottom = 91.0
+mouse_filter = 2
+
+[node name="Lines" type="Node2D" parent="Start"]
+position = Vector2(1, 0)
+
+[node name="Line1" type="Line2D" parent="Start/Lines"]
+points = PackedVector2Array(0, 1, 100, -1)
+width = 2.0
+default_color = Color(0, 0.58396524, 0.35303923, 1)
+metadata/_edit_lock_ = true
+
+[node name="Line2" type="Line2D" parent="Start/Lines"]
+points = PackedVector2Array(-1, 1, 100, 47)
+width = 2.0
+default_color = Color(0, 0.58431375, 0.3529412, 1)
+metadata/_edit_lock_ = true
+
+[node name="Options" type="VBoxContainer" parent="Start"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = -21.0
+offset_right = 701.0
+offset_bottom = 91.0
+
+[node name="StartBackButton" type="Button" parent="Start/Options"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "   x   "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Start/Options"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NewGameButton" type="Button" parent="Start/Options/HBoxContainer"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Neu Game"
+
+[node name="ContinueButton" type="Button" parent="Start/Options/HBoxContainer"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Continue"
 
 [node name="Settings" type="Control" parent="."]
 layout_mode = 3
@@ -363,6 +530,15 @@ offset_left = 0.4079895
 offset_top = 0.17597961
 offset_right = 0.4079895
 offset_bottom = 1.1759796
+
+[node name="Panel" type="Panel" parent="Settings"]
+modulate = Color(0, 0.25490198, 0.32156864, 1)
+layout_mode = 0
+offset_left = 101.0
+offset_top = -3.0
+offset_right = 701.0
+offset_bottom = 397.0
+mouse_filter = 2
 
 [node name="Lines" type="Node2D" parent="Settings"]
 position = Vector2(1, 0)
@@ -388,6 +564,7 @@ offset_bottom = 397.0
 size_flags_horizontal = 3
 
 [node name="SettingsBackButton" type="Button" parent="Settings/Options"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "   x   "
@@ -397,28 +574,22 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ControlsButton" type="Button" parent="Settings/Options/HBoxContainer"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Controls"
 
 [node name="AudioButton" type="Button" parent="Settings/Options/HBoxContainer"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Audio"
 
 [node name="LanguageButton" type="Button" parent="Settings/Options/HBoxContainer"]
+modulate = Color(0.03529412, 0.41568628, 0.47058824, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Language"
-
-[node name="Panel" type="Panel" parent="Settings"]
-modulate = Color(0, 0.25490198, 0.32156864, 1)
-layout_mode = 0
-offset_left = 101.0
-offset_top = -3.0
-offset_right = 701.0
-offset_bottom = 397.0
-mouse_filter = 2
 
 [node name="ControlsMenu" parent="." instance=ExtResource("3_4plqj")]
 visible = false
@@ -454,9 +625,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.74, 0.74, 0.74, 0.26)
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_bwquj")
 }
+
+[node name="FadeOut" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
