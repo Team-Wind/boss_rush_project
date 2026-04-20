@@ -5,6 +5,8 @@ public abstract partial class Boss : CharacterBody2D
 {
 	[Export] public Player PlayerRef;
 	[Export] public Area2D ContactHitbox;
+	[Export] public Area2D AttackHitbox;
+	[Export] public CollisionShape2D AttackCollison;
 	[Export] public Sprite2D Sprite2D;
 	[Export] public AnimationPlayer AnimationPlayer;
 	[Export] public BStateMachine BFSM;
@@ -15,8 +17,9 @@ public abstract partial class Boss : CharacterBody2D
 	public int CurrentStaggerCounter;
 	public float DistanceToPlayer;
 	public int CurrentHealth;
-    protected bool IsDead = false;
 	protected Vector2 Direction;
+    protected bool IsDead = false;
+    public bool IsAttacking = false;
 
 	[Signal] public delegate void BossDiedEventHandler();
 	[Signal] public delegate void BossHitEventHandler();
@@ -31,6 +34,9 @@ public abstract partial class Boss : CharacterBody2D
         {
             ContactHitbox.BodyEntered += OnBodyEntered;
         }
+		AttackCollison.Disabled = true;
+		AttackHitbox.Monitoring = true;
+
 	}
 
 	public abstract void InitializeBoss();
@@ -78,11 +84,26 @@ public abstract partial class Boss : CharacterBody2D
 			GD.Print($"Colisão detectada com o Player! Enviando {DamageAmount} de dano.");
 		}
 	}
+	public virtual void OnAttackEntered(Node2D body)
+	{
+		GD.Print("Entrou algo: ", body.Name);
+
+		if(body is Player player)
+		{
+			player.TakeDamage(DamageAmount, GlobalPosition);
+			GD.Print($"Ataque deferido ! Enviando {DamageAmount} de dano.");
+		}
+	}
 
 	protected virtual void Die()
 	{
 		IsDead = true;
 		EmitSignal(SignalName.BossDied);
 		QueueFree();
+	}
+
+	public void SetAnimation(StringName name)
+	{
+		AnimSprite2D.Play(name);
 	}
 }

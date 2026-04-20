@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://caet384aovsb1"]
+[gd_scene load_steps=12 format=3 uid="uid://caet384aovsb1"]
 
 [ext_resource type="Script" uid="uid://de3kidd2xhc0y" path="res://scripts/boss/bossess/boss1/Boss1.cs" id="1_7pt6b"]
 [ext_resource type="Script" uid="uid://k1fywbyenmn7" path="res://scripts/boss/boss_state_machine/BossIdle.cs" id="2_f3mj3"]
@@ -16,9 +16,14 @@ size = Vector2(64, 84.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_obq32"]
 
-[node name="Boss1" type="CharacterBody2D" node_paths=PackedStringArray("ContactHitbox", "Sprite2D", "BFSM")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt1nc"]
+size = Vector2(46, 74)
+
+[node name="Boss1" type="CharacterBody2D" node_paths=PackedStringArray("ContactHitbox", "AttackHitbox", "AttackCollison", "Sprite2D", "BFSM")]
 script = ExtResource("1_7pt6b")
 ContactHitbox = NodePath("Area2D")
+AttackHitbox = NodePath("AreaAttackCollider")
+AttackCollison = NodePath("AreaAttackCollider/AttackCollider")
 Sprite2D = NodePath("debug_sprite")
 BFSM = NodePath("BStateMachine")
 StaggerCounter = 15
@@ -71,3 +76,10 @@ offset_top = -70.0
 offset_right = 20.0
 offset_bottom = -47.0
 metadata/_edit_use_anchors_ = true
+
+[node name="AreaAttackCollider" type="Area2D" parent="."]
+
+[node name="AttackCollider" type="CollisionShape2D" parent="AreaAttackCollider"]
+position = Vector2(-61, 7)
+shape = SubResource("RectangleShape2D_nt1nc")
+debug_color = Color(1.8289685e-06, 0.6296706, 0.4834525, 0.41960785)
